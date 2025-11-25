@@ -1,14 +1,16 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import helmet from 'helmet';
 import morgan from 'morgan';
 import routes from './routes';
 import { errorHandler } from './middleware/errorHandler';
+import { helmetConfig } from './middleware/securityHeaders';
+import { sanitizeInput } from './middleware/sanitization';
+import { apiLimiter } from './middleware/rateLimiter';
 
 const app = express();
 
-// Security middleware
-app.use(helmet());
+// Security headers (Helmet)
+app.use(helmetConfig);
 
 // CORS configuration
 app.use(
@@ -29,8 +31,11 @@ if (process.env.NODE_ENV !== 'production') {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Input sanitization
+app.use(sanitizeInput);
+
 // Health check endpoint
-app.get('/health', (req: Request, res: Response) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.status(200).json({
     status: 'ok',
     timestamp: new Date().toISOString(),
@@ -39,8 +44,8 @@ app.get('/health', (req: Request, res: Response) => {
   });
 });
 
-// API routes
-app.use('/api', routes);
+// API routes with rate limiting
+app.use('/api', apiLimiter, routes);
 
 // 404 handler
 app.use((req: Request, res: Response) => {

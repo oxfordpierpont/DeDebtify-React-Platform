@@ -8,7 +8,7 @@ import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
 import prisma from '../lib/prisma';
-import { generateToken } from '../middleware/auth';
+import { generateToken, generateRefreshToken, verifyRefreshToken, validatePasswordStrength } from '../middleware/auth';
 import { ApiError } from '../middleware/errorHandler';
 
 // ============================================
@@ -47,6 +47,12 @@ export async function register(req: Request, res: Response, next: NextFunction) 
     // Validate input
     const data = registerSchema.parse(req.body);
 
+    // Validate password strength
+    const passwordCheck = validatePasswordStrength(data.password);
+    if (!passwordCheck.valid) {
+      throw new ApiError(400, passwordCheck.message || 'Password does not meet requirements');
+    }
+
     // Check if user already exists
     const existingUser = await prisma.user.findUnique({
       where: { email: data.email },
@@ -82,8 +88,13 @@ export async function register(req: Request, res: Response, next: NextFunction) 
       },
     });
 
-    // Generate JWT token
+    // Generate access and refresh tokens
     const token = generateToken({
+      userId: user.id,
+      email: user.email,
+    });
+
+    const refreshToken = generateRefreshToken({
       userId: user.id,
       email: user.email,
     });
@@ -92,6 +103,7 @@ export async function register(req: Request, res: Response, next: NextFunction) 
       success: true,
       data: {
         token,
+        refreshToken,
         user,
       },
       message: 'User registered successfully',
@@ -135,8 +147,13 @@ export async function login(req: Request, res: Response, next: NextFunction) {
       throw new ApiError(401, 'Invalid email or password');
     }
 
-    // Generate JWT token
+    // Generate access and refresh tokens
     const token = generateToken({
+      userId: user.id,
+      email: user.email,
+    });
+
+    const refreshToken = generateRefreshToken({
       userId: user.id,
       email: user.email,
     });
@@ -148,6 +165,7 @@ export async function login(req: Request, res: Response, next: NextFunction) {
       success: true,
       data: {
         token,
+        refreshToken,
         user: userWithoutPassword,
       },
       message: 'Login successful',
@@ -271,6 +289,66 @@ export async function updatePreferences(req: Request, res: Response, next: NextF
       success: true,
       data: user,
       message: 'Preferences updated successfully',
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+// ============================================
+// REFRESH TOKEN
+// ============================================
+
+const refreshTokenSchema = z.object({
+  refreshToken: z.string().min(1, 'Refresh token is required'),
+});
+
+/**
+ * Refresh access token
+ *
+ * POST /api/auth/refresh
+ *
+ * Body:
+ * - refreshToken: string (required)
+ *
+ * Returns new access token and refresh token
+ */
+export async function refreshAccessToken(req: Request, res: Response, next: NextFunction) {
+  try {
+    // Validate input
+    const { refreshToken } = refreshTokenSchema.parse(req.body);
+
+    // Verify refresh token
+    const decoded = verifyRefreshToken(refreshToken);
+
+    // Verify user still exists
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.userId },
+      select: { id: true, email: true },
+    });
+
+    if (!user) {
+      throw new ApiError(401, 'User not found');
+    }
+
+    // Generate new tokens
+    const newToken = generateToken({
+      userId: user.id,
+      email: user.email,
+    });
+
+    const newRefreshToken = generateRefreshToken({
+      userId: user.id,
+      email: user.email,
+    });
+
+    res.json({
+      success: true,
+      data: {
+        token: newToken,
+        refreshToken: newRefreshToken,
+      },
+      message: 'Token refreshed successfully',
     });
   } catch (error) {
     next(error);

@@ -12,7 +12,7 @@ import strategyRoutes from './strategy.routes';
 const router = Router();
 
 // Health check for API
-router.get('/health', (req, res) => {
+router.get('/health', (_req, res) => {
   res.json({
     status: 'ok',
     message: 'DeDebtify API is running',

@@ -8,9 +8,9 @@ export interface AppError extends Error {
 
 export const errorHandler = (
   err: AppError,
-  req: Request,
+  _req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   // Zod validation errors
   if (err instanceof ZodError) {
@@ -55,7 +55,7 @@ export const errorHandler = (
     console.error('Error:', err);
   }
 
-  res.status(statusCode).json({
+  return res.status(statusCode).json({
     error: statusCode === 500 ? 'Internal Server Error' : err.name,
     message: statusCode === 500 && process.env.NODE_ENV === 'production'
       ? 'Something went wrong'
