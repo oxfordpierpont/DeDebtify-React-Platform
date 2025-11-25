@@ -1,0 +1,315 @@
+/**
+ * Sidebar Navigation - Exact Design Match
+ */
+
+.dd-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 200px;
+    background: #2c3347;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    padding: 24px 0;
+}
+
+.dd-sidebar-header {
+    padding: 0 20px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dd-sidebar-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dd-sidebar-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #4a5568;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.dd-sidebar-avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.dd-sidebar-user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.dd-sidebar-user-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dd-sidebar-user-email {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dd-sidebar-nav {
+    flex: 1;
+    padding: 20px 0;
+    overflow-y: auto;
+}
+
+.dd-sidebar-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.dd-sidebar-nav-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.dd-sidebar-nav-item.active {
+    background: rgba(74, 144, 226, 0.15);
+    color: #4a90e2;
+    border-left-color: #4a90e2;
+}
+
+.dd-sidebar-nav-item .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Main Content Area with Sidebar */
+.dd-layout-with-sidebar {
+    margin-left: 200px;
+    min-height: 100vh;
+    background: #f5f7fa;
+}
+
+.dd-main-content {
+    padding: 32px;
+    max-width: 1400px;
+}
+
+/* Mobile Sidebar */
+@media (max-width: 768px) {
+    .dd-sidebar {
+        transform: translateX(-100%);
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .dd-sidebar.open {
+        transform: translateX(0);
+    }
+
+    .dd-layout-with-sidebar {
+        margin-left: 0;
+    }
+
+    .dd-sidebar-toggle {
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        z-index: 1001;
+        background: #2c3347;
+        color: #ffffff;
+        border: none;
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+}
+
+/* Stat Cards - Icons ABOVE Values */
+.dd-stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.dd-stat-card-modern {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.dd-stat-card-modern:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Small circular icon centered at top */
+.dd-stat-icon-top {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.dd-stat-icon-top .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: #ffffff;
+}
+
+.dd-stat-icon-top.red {
+    background: #e74c3c;
+}
+
+.dd-stat-icon-top.orange {
+    background: #f39c12;
+}
+
+.dd-stat-icon-top.purple {
+    background: #9b59b6;
+}
+
+.dd-stat-icon-top.teal {
+    background: #1abc9c;
+}
+
+.dd-stat-label-modern {
+    font-size: 11px;
+    font-weight: 600;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.dd-stat-value-modern {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.dd-stat-change {
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dd-stat-change.positive {
+    color: #27ae60;
+}
+
+.dd-stat-change.negative {
+    color: #e74c3c;
+}
+
+/* Buttons - Clean Design */
+.dd-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #4a90e2;
+    color: #ffffff;
+}
+
+.dd-btn-primary:hover {
+    background: #357abd;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+.dd-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #ffffff;
+    color: #2c3e50;
+    border: 1px solid #dde2e8;
+}
+
+.dd-btn-secondary:hover {
+    background: #f5f7fa;
+    border-color: #2c3e50;
+}
+
+/* Chart Card */
+.dd-chart-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    margin-bottom: 24px;
+}
+
+.dd-chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.dd-chart-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.dd-chart-subtitle {
+    font-size: 13px;
+    color: #95a5a6;
+    margin: 4px 0 0 0;
+}
