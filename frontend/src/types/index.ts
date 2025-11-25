@@ -2,12 +2,27 @@
 // USER TYPES
 // ============================================
 
+export type PayoffMethod = 'AVALANCHE' | 'SNOWBALL' | 'CUSTOM';
+
 export interface User {
   id: string;
   email: string;
   firstName?: string;
   lastName?: string;
+
+  // Financial preferences
   monthlyIncome?: number;
+  targetDebtFreeDate?: string;
+  preferredPayoffMethod: PayoffMethod;
+  currency: string;
+  timeZone: string;
+
+  // Notification preferences (JSON)
+  notificationPreferences?: any;
+
+  // Asset tracking
+  totalAssets?: number;
+
   createdAt: string;
   updatedAt: string;
 }
@@ -238,6 +253,8 @@ export interface Snapshot {
   monthlyIncome?: number;
   debtToIncomeRatio?: number;
   creditUtilization?: number;
+  totalAssets?: number;
+  netWorth?: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -291,6 +308,26 @@ export interface PlaidLinkTokenResponse {
 
 export interface PlaidExchangeTokenData {
   publicToken: string;
+}
+
+// ============================================
+// DEBT ORDER TYPES (for custom payoff order)
+// ============================================
+
+export interface DebtOrder {
+  id: string;
+  userId: string;
+  debtId: string;
+  debtType: 'credit_card' | 'loan' | 'mortgage';
+  priority: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateDebtOrderData {
+  debtId: string;
+  debtType: 'credit_card' | 'loan' | 'mortgage';
+  priority: number;
 }
 
 // ============================================
