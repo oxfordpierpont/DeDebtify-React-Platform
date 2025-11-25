@@ -1,4 +1,13 @@
 import { Router } from 'express';
+import authRoutes from './auth.routes';
+import dashboardRoutes from './dashboard.routes';
+import creditCardRoutes from './creditCard.routes';
+import loanRoutes from './loan.routes';
+import mortgageRoutes from './mortgage.routes';
+import billRoutes from './bill.routes';
+import goalRoutes from './goal.routes';
+import snapshotRoutes from './snapshot.routes';
+import strategyRoutes from './strategy.routes';
 
 const router = Router();
 
@@ -11,16 +20,15 @@ router.get('/health', (req, res) => {
   });
 });
 
-// TODO: Add route modules here
-// router.use('/auth', authRoutes);
-// router.use('/dashboard', dashboardRoutes);
-// router.use('/credit-cards', creditCardRoutes);
-// router.use('/loans', loanRoutes);
-// router.use('/mortgages', mortgageRoutes);
-// router.use('/bills', billRoutes);
-// router.use('/goals', goalRoutes);
-// router.use('/snapshots', snapshotRoutes);
-// router.use('/plaid', plaidRoutes);
-// router.use('/calculate', calculationRoutes);
+// Route modules
+router.use('/auth', authRoutes);
+router.use('/dashboard', dashboardRoutes);
+router.use('/credit-cards', creditCardRoutes);
+router.use('/loans', loanRoutes);
+router.use('/mortgages', mortgageRoutes);
+router.use('/bills', billRoutes);
+router.use('/goals', goalRoutes);
+router.use('/snapshots', snapshotRoutes);
+router.use('/strategy', strategyRoutes);
 
 export default router;
