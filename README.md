@@ -1,4 +1,4 @@
-# DeDebtify - WordPress Debt Management Plugin
+# Budgetura - WordPress Debt Management Plugin
 
 **Version:** 1.0.0
 **Author:** Oxford Pierpont
@@ -7,7 +7,7 @@
 
 ## Description
 
-DeDebtify is a comprehensive debt management and financial tracking plugin for WordPress. It helps users track credit cards, loans, mortgages, bills, and financial goals over multiple years with powerful calculation tools and progress tracking.
+Budgetura is a comprehensive debt management and financial tracking plugin for WordPress. It helps users track credit cards, loans, mortgages, bills, and financial goals over multiple years with powerful calculation tools and progress tracking.
 
 ## Features
 
@@ -48,17 +48,17 @@ DeDebtify is a comprehensive debt management and financial tracking plugin for W
 
 ## Installation
 
-1. Upload the `dedebtify` folder to `/wp-content/plugins/`
+1. Upload the `budgetura` folder to `/wp-content/plugins/`
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Navigate to DeDebtify in the admin menu to configure settings
+3. Navigate to Budgetura in the admin menu to configure settings
 
 ## Usage
 
 ### Basic Setup
 
-1. Go to **DeDebtify > Settings** to configure your preferences
+1. Go to **Budgetura > Settings** to configure your preferences
 2. Add your credit cards, loans, and bills through the admin menu
-3. Use the shortcode `[dedebtify_dashboard]` on any page to display the user dashboard
+3. Use the shortcode `[budgetura_dashboard]` on any page to display the user dashboard
 
 ### For Users
 
@@ -72,7 +72,7 @@ Users can:
 
 ### Shortcodes
 
-- `[dedebtify_dashboard]` - Display the full financial dashboard
+- `[budgetura_dashboard]` - Display the full financial dashboard
 
 ## Technical Stack
 
@@ -85,25 +85,25 @@ Users can:
 ## File Structure
 
 ```
-dedebtify/
-├── dedebtify.php                 # Main plugin file
+budgetura/
+├── budgetura.php                 # Main plugin file
 ├── uninstall.php                 # Uninstall cleanup
 ├── includes/
-│   ├── class-dedebtify.php              # Core plugin class
-│   ├── class-dedebtify-activator.php    # Activation hooks
-│   ├── class-dedebtify-deactivator.php  # Deactivation hooks
-│   ├── class-dedebtify-cpt.php          # Custom Post Types
-│   ├── class-dedebtify-calculations.php # Calculation engine
-│   └── class-dedebtify-api.php          # REST API endpoints
+│   ├── class-budgetura.php              # Core plugin class
+│   ├── class-budgetura-activator.php    # Activation hooks
+│   ├── class-budgetura-deactivator.php  # Deactivation hooks
+│   ├── class-budgetura-cpt.php          # Custom Post Types
+│   ├── class-budgetura-calculations.php # Calculation engine
+│   └── class-budgetura-api.php          # REST API endpoints
 ├── assets/
 │   ├── css/
-│   │   ├── dedebtify-admin.css
-│   │   ├── dedebtify-public.css
-│   │   └── dedebtify-print.css
+│   │   ├── budgetura-admin.css
+│   │   ├── budgetura-public.css
+│   │   └── budgetura-print.css
 │   └── js/
-│       ├── dedebtify-admin.js
-│       ├── dedebtify-public.js
-│       └── dedebtify-calculator.js
+│       ├── budgetura-admin.js
+│       ├── budgetura-public.js
+│       └── budgetura-calculator.js
 ├── admin/
 │   └── settings-page.php
 └── templates/
@@ -112,7 +112,7 @@ dedebtify/
 
 ## REST API Endpoints
 
-All endpoints are under the namespace `dedebtify/v1`:
+All endpoints are under the namespace `budgetura/v1`:
 
 - `GET /dashboard` - Get user dashboard data
 - `POST /snapshot` - Create financial snapshot

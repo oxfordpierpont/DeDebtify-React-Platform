@@ -3,8 +3,8 @@
  * Reports Page
  *
  * @since      1.0.0
- * @package    Dedebtify
- * @subpackage Dedebtify/admin
+ * @package    Budgetura
+ * @subpackage Budgetura/admin
  */
 
 // If this file is called directly, abort.
@@ -14,25 +14,25 @@ if ( ! defined( 'WPINC' ) ) {
 ?>
 
 <div class="wrap">
-    <h1><?php _e( 'DeDebtify Reports', 'dedebtify' ); ?></h1>
-    <p class="description"><?php _e( 'Analytics and reports for your debt management system', 'dedebtify' ); ?></p>
+    <h1><?php _e( 'Budgetura Reports', 'budgetura' ); ?></h1>
+    <p class="description"><?php _e( 'Analytics and reports for your debt management system', 'budgetura' ); ?></p>
 
     <!-- Summary Statistics -->
-    <div class="dedebtify-admin-section">
-        <h2><?php _e( 'Summary Statistics', 'dedebtify' ); ?></h2>
+    <div class="budgetura-admin-section">
+        <h2><?php _e( 'Summary Statistics', 'budgetura' ); ?></h2>
 
-        <div class="dedebtify-stats-grid">
-            <div class="dedebtify-stat-item">
+        <div class="budgetura-stats-grid">
+            <div class="budgetura-stat-item">
                 <div class="stat-icon">
                     <span class="dashicons dashicons-groups"></span>
                 </div>
                 <div class="stat-info">
                     <div class="stat-value"><?php echo count_users()['total_users']; ?></div>
-                    <div class="stat-label"><?php _e( 'Total Users', 'dedebtify' ); ?></div>
+                    <div class="stat-label"><?php _e( 'Total Users', 'budgetura' ); ?></div>
                 </div>
             </div>
 
-            <div class="dedebtify-stat-item">
+            <div class="budgetura-stat-item">
                 <div class="stat-icon">
                     <span class="dashicons dashicons-chart-line"></span>
                 </div>
@@ -66,25 +66,25 @@ if ( ! defined( 'WPINC' ) ) {
 
                         echo number_format($total_debt, 2);
                     ?></div>
-                    <div class="stat-label"><?php _e( 'Total Debt Tracked', 'dedebtify' ); ?></div>
+                    <div class="stat-label"><?php _e( 'Total Debt Tracked', 'budgetura' ); ?></div>
                 </div>
             </div>
 
-            <div class="dedebtify-stat-item">
+            <div class="budgetura-stat-item">
                 <div class="stat-icon">
                     <span class="dashicons dashicons-camera"></span>
                 </div>
                 <div class="stat-info">
                     <div class="stat-value"><?php echo wp_count_posts('dd_snapshot')->publish; ?></div>
-                    <div class="stat-label"><?php _e( 'Total Snapshots', 'dedebtify' ); ?></div>
+                    <div class="stat-label"><?php _e( 'Total Snapshots', 'budgetura' ); ?></div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Credit Cards Report -->
-    <div class="dedebtify-admin-section">
-        <h2><?php _e( 'Credit Cards Report', 'dedebtify' ); ?></h2>
+    <div class="budgetura-admin-section">
+        <h2><?php _e( 'Credit Cards Report', 'budgetura' ); ?></h2>
 
         <?php
         $cards = get_posts(array(
@@ -98,12 +98,12 @@ if ( ! defined( 'WPINC' ) ) {
             <table class="wp-list-table widefat fixed striped">
                 <thead>
                     <tr>
-                        <th><?php _e( 'Card Name', 'dedebtify' ); ?></th>
-                        <th><?php _e( 'User', 'dedebtify' ); ?></th>
-                        <th><?php _e( 'Balance', 'dedebtify' ); ?></th>
-                        <th><?php _e( 'Credit Limit', 'dedebtify' ); ?></th>
-                        <th><?php _e( 'Interest Rate', 'dedebtify' ); ?></th>
-                        <th><?php _e( 'Utilization', 'dedebtify' ); ?></th>
+                        <th><?php _e( 'Card Name', 'budgetura' ); ?></th>
+                        <th><?php _e( 'User', 'budgetura' ); ?></th>
+                        <th><?php _e( 'Balance', 'budgetura' ); ?></th>
+                        <th><?php _e( 'Credit Limit', 'budgetura' ); ?></th>
+                        <th><?php _e( 'Interest Rate', 'budgetura' ); ?></th>
+                        <th><?php _e( 'Utilization', 'budgetura' ); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -126,13 +126,13 @@ if ( ! defined( 'WPINC' ) ) {
                 </tbody>
             </table>
         <?php else : ?>
-            <p><?php _e( 'No credit cards found.', 'dedebtify' ); ?></p>
+            <p><?php _e( 'No credit cards found.', 'budgetura' ); ?></p>
         <?php endif; ?>
     </div>
 
     <!-- Loans Report -->
-    <div class="dedebtify-admin-section">
-        <h2><?php _e( 'Loans Report', 'dedebtify' ); ?></h2>
+    <div class="budgetura-admin-section">
+        <h2><?php _e( 'Loans Report', 'budgetura' ); ?></h2>
 
         <?php
         $loans = get_posts(array(
@@ -146,12 +146,12 @@ if ( ! defined( 'WPINC' ) ) {
             <table class="wp-list-table widefat fixed striped">
                 <thead>
                     <tr>
-                        <th><?php _e( 'Loan Name', 'dedebtify' ); ?></th>
-                        <th><?php _e( 'User', 'dedebtify' ); ?></th>
-                        <th><?php _e( 'Type', 'dedebtify' ); ?></th>
-                        <th><?php _e( 'Balance', 'dedebtify' ); ?></th>
-                        <th><?php _e( 'Interest Rate', 'dedebtify' ); ?></th>
-                        <th><?php _e( 'Monthly Payment', 'dedebtify' ); ?></th>
+                        <th><?php _e( 'Loan Name', 'budgetura' ); ?></th>
+                        <th><?php _e( 'User', 'budgetura' ); ?></th>
+                        <th><?php _e( 'Type', 'budgetura' ); ?></th>
+                        <th><?php _e( 'Balance', 'budgetura' ); ?></th>
+                        <th><?php _e( 'Interest Rate', 'budgetura' ); ?></th>
+                        <th><?php _e( 'Monthly Payment', 'budgetura' ); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -174,32 +174,32 @@ if ( ! defined( 'WPINC' ) ) {
                 </tbody>
             </table>
         <?php else : ?>
-            <p><?php _e( 'No loans found.', 'dedebtify' ); ?></p>
+            <p><?php _e( 'No loans found.', 'budgetura' ); ?></p>
         <?php endif; ?>
     </div>
 
     <!-- Export Options -->
-    <div class="dedebtify-admin-section">
-        <h2><?php _e( 'Export Data', 'dedebtify' ); ?></h2>
-        <p><?php _e( 'Export your data in various formats:', 'dedebtify' ); ?></p>
+    <div class="budgetura-admin-section">
+        <h2><?php _e( 'Export Data', 'budgetura' ); ?></h2>
+        <p><?php _e( 'Export your data in various formats:', 'budgetura' ); ?></p>
 
-        <div class="dedebtify-quick-actions">
-            <button class="dedebtify-action-card" id="export-csv">
+        <div class="budgetura-quick-actions">
+            <button class="budgetura-action-card" id="export-csv">
                 <span class="dashicons dashicons-media-spreadsheet"></span>
-                <h3><?php _e( 'Export to CSV', 'dedebtify' ); ?></h3>
-                <p><?php _e( 'Download all data as CSV', 'dedebtify' ); ?></p>
+                <h3><?php _e( 'Export to CSV', 'budgetura' ); ?></h3>
+                <p><?php _e( 'Download all data as CSV', 'budgetura' ); ?></p>
             </button>
 
-            <button class="dedebtify-action-card" id="export-pdf">
+            <button class="budgetura-action-card" id="export-pdf">
                 <span class="dashicons dashicons-media-document"></span>
-                <h3><?php _e( 'Export to PDF', 'dedebtify' ); ?></h3>
-                <p><?php _e( 'Generate PDF report', 'dedebtify' ); ?></p>
+                <h3><?php _e( 'Export to PDF', 'budgetura' ); ?></h3>
+                <p><?php _e( 'Generate PDF report', 'budgetura' ); ?></p>
             </button>
 
-            <button class="dedebtify-action-card" id="export-json">
+            <button class="budgetura-action-card" id="export-json">
                 <span class="dashicons dashicons-media-code"></span>
-                <h3><?php _e( 'Export to JSON', 'dedebtify' ); ?></h3>
-                <p><?php _e( 'Download as JSON format', 'dedebtify' ); ?></p>
+                <h3><?php _e( 'Export to JSON', 'budgetura' ); ?></h3>
+                <p><?php _e( 'Download as JSON format', 'budgetura' ); ?></p>
             </button>
         </div>
     </div>

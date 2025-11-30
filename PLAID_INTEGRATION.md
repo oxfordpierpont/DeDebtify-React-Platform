@@ -1,4 +1,4 @@
-# DeDebtify Plaid Integration Guide
+# Budgetura Plaid Integration Guide
 
 ## Overview
 Complete Plaid integration for automatic financial account syncing. Users can securely connect their bank accounts, credit cards, loans, and mortgages to automatically sync balances and debt information.
@@ -33,18 +33,18 @@ Complete Plaid integration for automatic financial account syncing. Users can se
 ## File Structure
 
 ```
-dedebtify/
-├── dedebtify.php                              # Main plugin file
+budgetura/
+├── budgetura.php                              # Main plugin file
 ├── includes/
-│   ├── class-dedebtify-plaid.php             # Plaid API integration
-│   ├── class-dedebtify-rest-api.php          # REST API endpoints
-│   ├── class-dedebtify-helpers.php           # Helper functions
+│   ├── class-budgetura-plaid.php             # Plaid API integration
+│   ├── class-budgetura-rest-api.php          # REST API endpoints
+│   ├── class-budgetura-helpers.php           # Helper functions
 │   └── plaid-loader.php                      # Plaid initialization
 ├── templates/
 │   └── account-sync.php                       # Account linking UI
 ├── assets/
 │   └── js/
-│       └── dedebtify-plaid.js                # Plaid Link frontend
+│       └── budgetura-plaid.js                # Plaid Link frontend
 └── admin/
     └── settings-page.php                      # Admin settings
 ```
@@ -60,7 +60,7 @@ dedebtify/
 
 ### 2. Configure Plugin
 
-1. Go to WordPress Admin → DeDebtify → Settings
+1. Go to WordPress Admin → Budgetura → Settings
 2. Scroll to "Plaid Financial Data Integration"
 3. Enable Plaid Integration
 4. Enter Client ID and Secret
@@ -71,7 +71,7 @@ dedebtify/
 ### 3. Create Account Sync Page
 
 1. Create a new WordPress page
-2. Add the shortcode: `[dedebtify_account_sync]`
+2. Add the shortcode: `[budgetura_account_sync]`
 3. Publish the page
 4. Add page to menu (optional)
 
@@ -90,12 +90,12 @@ dedebtify/
 2. **Manual Sync**
    - User clicks "Sync Now" on any linked account
    - Data is refreshed from Plaid
-   - DeDebtify CPTs are updated
+   - Budgetura CPTs are updated
 
 3. **Disconnect**
    - User clicks "Disconnect"
    - Plaid connection is removed
-   - Historical data remains in DeDebtify
+   - Historical data remains in Budgetura
 
 ### Auto-Sync
 
@@ -106,11 +106,11 @@ Configured in admin settings:
 
 ## REST API Endpoints
 
-All endpoints require authentication and use the namespace `dedebtify/v1/plaid/`
+All endpoints require authentication and use the namespace `budgetura/v1/plaid/`
 
 ### Create Link Token
 ```http
-POST /dedebtify/v1/plaid/create-link-token
+POST /budgetura/v1/plaid/create-link-token
 ```
 Creates a Plaid Link token for the current user.
 
@@ -124,7 +124,7 @@ Creates a Plaid Link token for the current user.
 
 ### Exchange Token
 ```http
-POST /dedebtify/v1/plaid/exchange-token
+POST /budgetura/v1/plaid/exchange-token
 Content-Type: application/json
 
 {
@@ -143,7 +143,7 @@ Exchanges public token for access token and triggers initial sync.
 
 ### Get Linked Accounts
 ```http
-GET /dedebtify/v1/plaid/linked-accounts
+GET /budgetura/v1/plaid/linked-accounts
 ```
 Returns all linked accounts for the current user.
 
@@ -160,7 +160,7 @@ Returns all linked accounts for the current user.
 
 ### Sync Accounts
 ```http
-POST /dedebtify/v1/plaid/sync
+POST /budgetura/v1/plaid/sync
 ```
 Manually triggers sync for all linked accounts.
 
@@ -179,7 +179,7 @@ Manually triggers sync for all linked accounts.
 
 ### Disconnect Account
 ```http
-POST /dedebtify/v1/plaid/disconnect
+POST /budgetura/v1/plaid/disconnect
 Content-Type: application/json
 
 {
@@ -199,21 +199,21 @@ Disconnects a linked account.
 ## Data Mapping
 
 ### Credit Cards
-Plaid → DeDebtify CPT (`dd_credit_card`)
+Plaid → Budgetura CPT (`dd_credit_card`)
 - `balances.current` → `balance`
 - `balances.limit` → `credit_limit`
 - `aprs[0].apr_percentage` → `interest_rate`
 - Auto-calculated: `minimum_payment` (2% of balance or $25)
 
 ### Loans
-Plaid → DeDebtify CPT (`dd_loan`)
+Plaid → Budgetura CPT (`dd_loan`)
 - `balances.current` → `current_balance`
 - `origination_principal_amount` → `principal`
 - `interest_rate_percentage` → `interest_rate`
 - `minimum_payment_amount` → `monthly_payment`
 
 ### Mortgages
-Plaid → DeDebtify CPT (`dd_mortgage`)
+Plaid → Budgetura CPT (`dd_mortgage`)
 - `balances.current` → `current_balance`
 - `origination_principal_amount` → `principal`
 - `interest_rate.percentage` → `interest_rate`
@@ -244,12 +244,12 @@ If accounts aren't syncing:
 ## Cron Jobs
 
 Plugin creates these scheduled tasks:
-- `dedebtify_plaid_auto_sync`: Main sync task (frequency configurable)
-- `dedebtify_plaid_initial_sync`: One-time sync after linking
+- `budgetura_plaid_auto_sync`: Main sync task (frequency configurable)
+- `budgetura_plaid_initial_sync`: One-time sync after linking
 
 To manually trigger sync via WP-CLI:
 ```bash
-wp cron event run dedebtify_plaid_auto_sync
+wp cron event run budgetura_plaid_auto_sync
 ```
 
 ## Privacy & Compliance
@@ -267,7 +267,7 @@ Users can:
 - Right to be forgotten (delete user = delete all tokens)
 
 ### Data Retention
-- Synced financial data remains in DeDebtify CPTs
+- Synced financial data remains in Budgetura CPTs
 - Disconnecting removes Plaid link but keeps data
 - Deleting user removes all data via WordPress hooks
 

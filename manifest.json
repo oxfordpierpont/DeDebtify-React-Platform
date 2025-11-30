@@ -1,6 +1,6 @@
 {
-  "name": "DeDebtify - Debt Management System",
-  "short_name": "DeDebtify",
+  "name": "Budgetura - Debt Management System",
+  "short_name": "Budgetura",
   "description": "Comprehensive debt management and financial coaching system",
   "start_url": "/debt-dashboard/",
   "scope": "/",
@@ -10,61 +10,61 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/icon-72x72.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/icon-96x96.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/icon-96x96.png",
       "sizes": "96x96",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/icon-128x128.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/icon-128x128.png",
       "sizes": "128x128",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/icon-144x144.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/icon-144x144.png",
       "sizes": "144x144",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/icon-152x152.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/icon-152x152.png",
       "sizes": "152x152",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/icon-192x192.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/icon-384x384.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/icon-384x384.png",
       "sizes": "384x384",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/icon-512x512.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/icon-maskable-192x192.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/icon-maskable-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/icon-maskable-512x512.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/icon-maskable-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -72,19 +72,19 @@
   ],
   "screenshots": [
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/screenshot-dashboard.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/screenshot-dashboard.png",
       "sizes": "540x720",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/screenshot-ai-coach.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/screenshot-ai-coach.png",
       "sizes": "540x720",
       "type": "image/png",
       "form_factor": "narrow"
     },
     {
-      "src": "/wp-content/plugins/dedebtify/assets/images/screenshot-desktop.png",
+      "src": "/wp-content/plugins/budgetura/assets/images/screenshot-desktop.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide"
@@ -99,7 +99,7 @@
       "url": "/debt-dashboard/",
       "icons": [
         {
-          "src": "/wp-content/plugins/dedebtify/assets/images/shortcut-dashboard.png",
+          "src": "/wp-content/plugins/budgetura/assets/images/shortcut-dashboard.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -112,7 +112,7 @@
       "url": "/ai-coach/",
       "icons": [
         {
-          "src": "/wp-content/plugins/dedebtify/assets/images/shortcut-ai.png",
+          "src": "/wp-content/plugins/budgetura/assets/images/shortcut-ai.png",
           "sizes": "96x96",
           "type": "image/png"
         }
@@ -125,7 +125,7 @@
       "url": "/debt-dashboard/?action=snapshot",
       "icons": [
         {
-          "src": "/wp-content/plugins/dedebtify/assets/images/shortcut-snapshot.png",
+          "src": "/wp-content/plugins/budgetura/assets/images/shortcut-snapshot.png",
           "sizes": "96x96",
           "type": "image/png"
         }

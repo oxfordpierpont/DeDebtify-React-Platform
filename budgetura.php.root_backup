@@ -1,0 +1,159 @@
+<?php
+/**
+ * Plugin Name: Budgetura
+ * Plugin URI: https://budgetura.com
+ * Description: WordPress plugin for comprehensive debt management, financial tracking, and AI-powered coaching
+ * Version: 1.0.0
+ * Author: Budgetura Team
+ * Author URI: https://budgetura.com
+ * License: GPL v2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: budgetura
+ * Domain Path: /languages
+ *
+ * @package    Budgetura
+ * @author     Budgetura Team
+ * @since      1.0.0
+ */
+
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+    die;
+}
+
+/**
+ * Plugin version
+ */
+define( 'BUDGETURA_VERSION', '1.0.0' );
+define( 'BUDGETURA_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'BUDGETURA_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+
+/**
+ * Load plugin core classes
+ */
+require_once BUDGETURA_PLUGIN_DIR . 'includes/class-budgetura-helpers.php';
+require_once BUDGETURA_PLUGIN_DIR . 'includes/class-budgetura-cpt.php';
+
+/**
+ * Load Plaid integration
+ */
+require_once BUDGETURA_PLUGIN_DIR . 'includes/plaid-loader.php';
+
+/**
+ * Activation hook
+ */
+function budgetura_activate() {
+    // Set default options
+    add_option( 'budgetura_ai_provider', 'openrouter' );
+    add_option( 'budgetura_ai_model', 'minimax/minimax-m2' );
+    add_option( 'budgetura_ai_temperature', 0.7 );
+    add_option( 'budgetura_ai_max_tokens', 2000 );
+    add_option( 'budgetura_plaid_enabled', 0 );
+    add_option( 'budgetura_plaid_environment', 'sandbox' );
+    add_option( 'budgetura_plaid_sync_frequency', 'daily' );
+
+    // Flush rewrite rules
+    flush_rewrite_rules();
+}
+register_activation_hook( __FILE__, 'budgetura_activate' );
+
+/**
+ * Deactivation hook
+ */
+function budgetura_deactivate() {
+    // Clean up cron jobs
+    $timestamp = wp_next_scheduled( 'budgetura_plaid_auto_sync' );
+    if ( $timestamp ) {
+        wp_unschedule_event( $timestamp, 'budgetura_plaid_auto_sync' );
+    }
+
+    // Flush rewrite rules
+    flush_rewrite_rules();
+}
+register_deactivation_hook( __FILE__, 'budgetura_deactivate' );
+
+/**
+ * Load admin settings page
+ */
+function budgetura_admin_menu() {
+    add_menu_page(
+        __( 'Budgetura Settings', 'budgetura' ),
+        __( 'Budgetura', 'budgetura' ),
+        'manage_options',
+        'budgetura-settings',
+        'budgetura_settings_page',
+        'dashicons-money-alt',
+        30
+    );
+}
+add_action( 'admin_menu', 'budgetura_admin_menu' );
+
+/**
+ * Render settings page
+ */
+function budgetura_settings_page() {
+    if ( ! current_user_can( 'manage_options' ) ) {
+        wp_die( __( 'You do not have sufficient permissions to access this page.', 'budgetura' ) );
+    }
+
+    require_once BUDGETURA_PLUGIN_DIR . 'admin/settings-page.php';
+}
+
+/**
+ * Enqueue admin styles
+ */
+function budgetura_admin_styles() {
+    wp_enqueue_style( 'dashicons' );
+}
+add_action( 'admin_enqueue_scripts', 'budgetura_admin_styles' );
+
+/**
+ * Enqueue public styles and scripts
+ */
+function budgetura_enqueue_scripts() {
+    // Enqueue design system CSS
+    wp_enqueue_style(
+        'budgetura-design-system',
+        BUDGETURA_PLUGIN_URL . 'assets/css/budgetura-design-system.css',
+        array(),
+        BUDGETURA_VERSION
+    );
+
+    // Enqueue mobile app CSS
+    wp_enqueue_style(
+        'budgetura-mobile-app',
+        BUDGETURA_PLUGIN_URL . 'assets/css/budgetura-mobile-app.css',
+        array( 'budgetura-design-system' ),
+        BUDGETURA_VERSION
+    );
+
+    // Enqueue managers JavaScript
+    wp_enqueue_script(
+        'budgetura-managers',
+        BUDGETURA_PLUGIN_URL . 'assets/js/budgetura-managers.js',
+        array( 'jquery' ),
+        BUDGETURA_VERSION,
+        true
+    );
+
+    // Localize script with REST API data
+    wp_localize_script( 'budgetura-managers', 'budgetura', array(
+        'restUrl' => rest_url( 'budgetura/v1/' ),
+        'restNonce' => wp_create_nonce( 'wp_rest' ),
+        'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+        'nonce' => wp_create_nonce( 'budgetura_nonce' )
+    ) );
+}
+add_action( 'wp_enqueue_scripts', 'budgetura_enqueue_scripts' );
+
+/**
+ * Load text domain for translations
+ */
+function budgetura_load_textdomain() {
+    load_plugin_textdomain(
+        'budgetura',
+        false,
+        dirname( plugin_basename( __FILE__ ) ) . '/languages'
+    );
+}
+add_action( 'plugins_loaded', 'budgetura_load_textdomain' );

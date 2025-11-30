@@ -3,8 +3,8 @@
  * Settings Page
  *
  * @since      1.0.0
- * @package    Dedebtify
- * @subpackage Dedebtify/admin
+ * @package    Budgetura
+ * @subpackage Budgetura/admin
  */
 
 // If this file is called directly, abort.
@@ -13,246 +13,246 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Handle form submission
-if ( isset( $_POST['dedebtify_settings_submit'] ) && check_admin_referer( 'dedebtify_settings_nonce' ) ) {
+if ( isset( $_POST['budgetura_settings_submit'] ) && check_admin_referer( 'budgetura_settings_nonce' ) ) {
     // Save settings
-    update_option( 'dedebtify_currency_symbol', sanitize_text_field( $_POST['currency_symbol'] ) );
-    update_option( 'dedebtify_default_interest_rate', floatval( $_POST['default_interest_rate'] ) );
-    update_option( 'dedebtify_notifications_enabled', isset( $_POST['notifications_enabled'] ) ? 1 : 0 );
-    update_option( 'dedebtify_notification_email', sanitize_email( $_POST['notification_email'] ) );
-    update_option( 'dedebtify_snapshot_frequency', sanitize_text_field( $_POST['snapshot_frequency'] ) );
-    update_option( 'dedebtify_default_payoff_strategy', sanitize_text_field( $_POST['default_payoff_strategy'] ) );
+    update_option( 'budgetura_currency_symbol', sanitize_text_field( $_POST['currency_symbol'] ) );
+    update_option( 'budgetura_default_interest_rate', floatval( $_POST['default_interest_rate'] ) );
+    update_option( 'budgetura_notifications_enabled', isset( $_POST['notifications_enabled'] ) ? 1 : 0 );
+    update_option( 'budgetura_notification_email', sanitize_email( $_POST['notification_email'] ) );
+    update_option( 'budgetura_snapshot_frequency', sanitize_text_field( $_POST['snapshot_frequency'] ) );
+    update_option( 'budgetura_default_payoff_strategy', sanitize_text_field( $_POST['default_payoff_strategy'] ) );
 
     // Save styling options
-    update_option( 'dedebtify_primary_color', sanitize_hex_color( $_POST['primary_color'] ) );
-    update_option( 'dedebtify_success_color', sanitize_hex_color( $_POST['success_color'] ) );
-    update_option( 'dedebtify_warning_color', sanitize_hex_color( $_POST['warning_color'] ) );
-    update_option( 'dedebtify_danger_color', sanitize_hex_color( $_POST['danger_color'] ) );
-    update_option( 'dedebtify_font_family', sanitize_text_field( $_POST['font_family'] ) );
-    update_option( 'dedebtify_border_radius', intval( $_POST['border_radius'] ) );
+    update_option( 'budgetura_primary_color', sanitize_hex_color( $_POST['primary_color'] ) );
+    update_option( 'budgetura_success_color', sanitize_hex_color( $_POST['success_color'] ) );
+    update_option( 'budgetura_warning_color', sanitize_hex_color( $_POST['warning_color'] ) );
+    update_option( 'budgetura_danger_color', sanitize_hex_color( $_POST['danger_color'] ) );
+    update_option( 'budgetura_font_family', sanitize_text_field( $_POST['font_family'] ) );
+    update_option( 'budgetura_border_radius', intval( $_POST['border_radius'] ) );
 
     // Save AI settings
-    update_option( 'dedebtify_ai_provider', sanitize_text_field( $_POST['ai_provider'] ) );
-    update_option( 'dedebtify_ai_api_key', sanitize_text_field( $_POST['ai_api_key'] ) );
-    update_option( 'dedebtify_ai_model', sanitize_text_field( $_POST['ai_model'] ) );
-    update_option( 'dedebtify_ai_custom_model', sanitize_text_field( $_POST['ai_custom_model'] ) );
-    update_option( 'dedebtify_ai_fallback_model', sanitize_text_field( $_POST['ai_fallback_model'] ) );
-    update_option( 'dedebtify_ai_temperature', floatval( $_POST['ai_temperature'] ) );
-    update_option( 'dedebtify_ai_max_tokens', intval( $_POST['ai_max_tokens'] ) );
+    update_option( 'budgetura_ai_provider', sanitize_text_field( $_POST['ai_provider'] ) );
+    update_option( 'budgetura_ai_api_key', sanitize_text_field( $_POST['ai_api_key'] ) );
+    update_option( 'budgetura_ai_model', sanitize_text_field( $_POST['ai_model'] ) );
+    update_option( 'budgetura_ai_custom_model', sanitize_text_field( $_POST['ai_custom_model'] ) );
+    update_option( 'budgetura_ai_fallback_model', sanitize_text_field( $_POST['ai_fallback_model'] ) );
+    update_option( 'budgetura_ai_temperature', floatval( $_POST['ai_temperature'] ) );
+    update_option( 'budgetura_ai_max_tokens', intval( $_POST['ai_max_tokens'] ) );
 
     // Save Plaid settings
-    update_option( 'dedebtify_plaid_enabled', isset( $_POST['plaid_enabled'] ) ? 1 : 0 );
-    update_option( 'dedebtify_plaid_client_id', sanitize_text_field( $_POST['plaid_client_id'] ) );
-    update_option( 'dedebtify_plaid_secret', sanitize_text_field( $_POST['plaid_secret'] ) );
-    update_option( 'dedebtify_plaid_environment', sanitize_text_field( $_POST['plaid_environment'] ) );
-    update_option( 'dedebtify_plaid_auto_sync', isset( $_POST['plaid_auto_sync'] ) ? 1 : 0 );
-    update_option( 'dedebtify_plaid_sync_frequency', sanitize_text_field( $_POST['plaid_sync_frequency'] ) );
+    update_option( 'budgetura_plaid_enabled', isset( $_POST['plaid_enabled'] ) ? 1 : 0 );
+    update_option( 'budgetura_plaid_client_id', sanitize_text_field( $_POST['plaid_client_id'] ) );
+    update_option( 'budgetura_plaid_secret', sanitize_text_field( $_POST['plaid_secret'] ) );
+    update_option( 'budgetura_plaid_environment', sanitize_text_field( $_POST['plaid_environment'] ) );
+    update_option( 'budgetura_plaid_auto_sync', isset( $_POST['plaid_auto_sync'] ) ? 1 : 0 );
+    update_option( 'budgetura_plaid_sync_frequency', sanitize_text_field( $_POST['plaid_sync_frequency'] ) );
 
     // Save PWA settings
-    update_option( 'dedebtify_pwa_enabled', isset( $_POST['pwa_enabled'] ) ? 1 : 0 );
-    update_option( 'dedebtify_pwa_push_enabled', isset( $_POST['pwa_push_enabled'] ) ? 1 : 0 );
-    update_option( 'dedebtify_pwa_vapid_public_key', sanitize_text_field( $_POST['pwa_vapid_public_key'] ) );
-    update_option( 'dedebtify_pwa_vapid_private_key', sanitize_text_field( $_POST['pwa_vapid_private_key'] ) );
+    update_option( 'budgetura_pwa_enabled', isset( $_POST['pwa_enabled'] ) ? 1 : 0 );
+    update_option( 'budgetura_pwa_push_enabled', isset( $_POST['pwa_push_enabled'] ) ? 1 : 0 );
+    update_option( 'budgetura_pwa_vapid_public_key', sanitize_text_field( $_POST['pwa_vapid_public_key'] ) );
+    update_option( 'budgetura_pwa_vapid_private_key', sanitize_text_field( $_POST['pwa_vapid_private_key'] ) );
 
-    echo '<div class="notice notice-success is-dismissible"><p>' . __( 'Settings saved successfully!', 'dedebtify' ) . '</p></div>';
+    echo '<div class="notice notice-success is-dismissible"><p>' . __( 'Settings saved successfully!', 'budgetura' ) . '</p></div>';
 }
 
 // Handle dummy data generation
-if ( isset( $_POST['dedebtify_generate_dummy_data'] ) && check_admin_referer( 'dedebtify_dummy_data_nonce' ) ) {
-    require_once DEDEBTIFY_PLUGIN_DIR . 'includes/class-dedebtify-dummy-data.php';
-    Dedebtify_Dummy_Data::generate_all( get_current_user_id() );
-    echo '<div class="notice notice-success is-dismissible"><p>' . __( 'Dummy data generated successfully!', 'dedebtify' ) . '</p></div>';
+if ( isset( $_POST['budgetura_generate_dummy_data'] ) && check_admin_referer( 'budgetura_dummy_data_nonce' ) ) {
+    require_once BUDGETURA_PLUGIN_DIR . 'includes/class-budgetura-dummy-data.php';
+    Budgetura_Dummy_Data::generate_all( get_current_user_id() );
+    echo '<div class="notice notice-success is-dismissible"><p>' . __( 'Dummy data generated successfully!', 'budgetura' ) . '</p></div>';
 }
 
 // Handle dummy data wipe
-if ( isset( $_POST['dedebtify_wipe_dummy_data'] ) && check_admin_referer( 'dedebtify_dummy_data_nonce' ) ) {
-    require_once DEDEBTIFY_PLUGIN_DIR . 'includes/class-dedebtify-dummy-data.php';
-    Dedebtify_Dummy_Data::delete_all( get_current_user_id() );
-    echo '<div class="notice notice-success is-dismissible"><p>' . __( 'Dummy data wiped successfully!', 'dedebtify' ) . '</p></div>';
+if ( isset( $_POST['budgetura_wipe_dummy_data'] ) && check_admin_referer( 'budgetura_dummy_data_nonce' ) ) {
+    require_once BUDGETURA_PLUGIN_DIR . 'includes/class-budgetura-dummy-data.php';
+    Budgetura_Dummy_Data::delete_all( get_current_user_id() );
+    echo '<div class="notice notice-success is-dismissible"><p>' . __( 'Dummy data wiped successfully!', 'budgetura' ) . '</p></div>';
 }
 
 // Get current settings
-$currency_symbol = get_option( 'dedebtify_currency_symbol', '$' );
-$default_interest_rate = get_option( 'dedebtify_default_interest_rate', 18.0 );
-$notifications_enabled = get_option( 'dedebtify_notifications_enabled', 0 );
-$notification_email = get_option( 'dedebtify_notification_email', get_option( 'admin_email' ) );
-$snapshot_frequency = get_option( 'dedebtify_snapshot_frequency', 'monthly' );
-$default_payoff_strategy = get_option( 'dedebtify_default_payoff_strategy', 'avalanche' );
+$currency_symbol = get_option( 'budgetura_currency_symbol', '$' );
+$default_interest_rate = get_option( 'budgetura_default_interest_rate', 18.0 );
+$notifications_enabled = get_option( 'budgetura_notifications_enabled', 0 );
+$notification_email = get_option( 'budgetura_notification_email', get_option( 'admin_email' ) );
+$snapshot_frequency = get_option( 'budgetura_snapshot_frequency', 'monthly' );
+$default_payoff_strategy = get_option( 'budgetura_default_payoff_strategy', 'avalanche' );
 
 // Get styling settings
-$primary_color = get_option( 'dedebtify_primary_color', '#3b82f6' );
-$success_color = get_option( 'dedebtify_success_color', '#10b981' );
-$warning_color = get_option( 'dedebtify_warning_color', '#f59e0b' );
-$danger_color = get_option( 'dedebtify_danger_color', '#ef4444' );
-$font_family = get_option( 'dedebtify_font_family', 'System Default' );
-$border_radius = get_option( 'dedebtify_border_radius', 8 );
+$primary_color = get_option( 'budgetura_primary_color', '#3b82f6' );
+$success_color = get_option( 'budgetura_success_color', '#10b981' );
+$warning_color = get_option( 'budgetura_warning_color', '#f59e0b' );
+$danger_color = get_option( 'budgetura_danger_color', '#ef4444' );
+$font_family = get_option( 'budgetura_font_family', 'System Default' );
+$border_radius = get_option( 'budgetura_border_radius', 8 );
 
 // Get AI settings
-$ai_provider = get_option( 'dedebtify_ai_provider', 'openrouter' );
-$ai_api_key = get_option( 'dedebtify_ai_api_key', '' );
-$ai_model = get_option( 'dedebtify_ai_model', 'minimax/minimax-m2' );
-$ai_custom_model = get_option( 'dedebtify_ai_custom_model', '' );
-$ai_fallback_model = get_option( 'dedebtify_ai_fallback_model', '' );
-$ai_temperature = get_option( 'dedebtify_ai_temperature', 0.7 );
-$ai_max_tokens = get_option( 'dedebtify_ai_max_tokens', 2000 );
+$ai_provider = get_option( 'budgetura_ai_provider', 'openrouter' );
+$ai_api_key = get_option( 'budgetura_ai_api_key', '' );
+$ai_model = get_option( 'budgetura_ai_model', 'minimax/minimax-m2' );
+$ai_custom_model = get_option( 'budgetura_ai_custom_model', '' );
+$ai_fallback_model = get_option( 'budgetura_ai_fallback_model', '' );
+$ai_temperature = get_option( 'budgetura_ai_temperature', 0.7 );
+$ai_max_tokens = get_option( 'budgetura_ai_max_tokens', 2000 );
 
 // Get Plaid settings
-$plaid_enabled = get_option( 'dedebtify_plaid_enabled', 0 );
-$plaid_client_id = get_option( 'dedebtify_plaid_client_id', '' );
-$plaid_secret = get_option( 'dedebtify_plaid_secret', '' );
-$plaid_environment = get_option( 'dedebtify_plaid_environment', 'sandbox' );
-$plaid_auto_sync = get_option( 'dedebtify_plaid_auto_sync', 0 );
-$plaid_sync_frequency = get_option( 'dedebtify_plaid_sync_frequency', 'daily' );
-$ai_provider = get_option( 'dedebtify_ai_provider', 'openai' );
-$ai_api_key = get_option( 'dedebtify_ai_api_key', '' );
-$ai_model = get_option( 'dedebtify_ai_model', 'gpt-4o' );
+$plaid_enabled = get_option( 'budgetura_plaid_enabled', 0 );
+$plaid_client_id = get_option( 'budgetura_plaid_client_id', '' );
+$plaid_secret = get_option( 'budgetura_plaid_secret', '' );
+$plaid_environment = get_option( 'budgetura_plaid_environment', 'sandbox' );
+$plaid_auto_sync = get_option( 'budgetura_plaid_auto_sync', 0 );
+$plaid_sync_frequency = get_option( 'budgetura_plaid_sync_frequency', 'daily' );
+$ai_provider = get_option( 'budgetura_ai_provider', 'openai' );
+$ai_api_key = get_option( 'budgetura_ai_api_key', '' );
+$ai_model = get_option( 'budgetura_ai_model', 'gpt-4o' );
 
 // Check if user has dummy data
 $has_dummy_data = get_user_meta( get_current_user_id(), 'dd_has_dummy_data', true );
 ?>
 
-<div class="wrap dedebtify-settings-page">
-    <h1><?php _e( 'DeDebtify Settings', 'dedebtify' ); ?></h1>
-    <p class="description"><?php _e( 'Configure your debt management system settings', 'dedebtify' ); ?></p>
+<div class="wrap budgetura-settings-page">
+    <h1><?php _e( 'Budgetura Settings', 'budgetura' ); ?></h1>
+    <p class="description"><?php _e( 'Configure your debt management system settings', 'budgetura' ); ?></p>
 
     <form method="post" action="">
-        <?php wp_nonce_field( 'dedebtify_settings_nonce' ); ?>
+        <?php wp_nonce_field( 'budgetura_settings_nonce' ); ?>
 
         <!-- General Settings -->
-        <div class="dedebtify-settings-section">
-            <h3><?php _e( 'General Settings', 'dedebtify' ); ?></h3>
+        <div class="budgetura-settings-section">
+            <h3><?php _e( 'General Settings', 'budgetura' ); ?></h3>
 
-            <div class="dedebtify-settings-row">
-                <div class="dedebtify-settings-label">
-                    <label for="currency_symbol"><?php _e( 'Currency Symbol', 'dedebtify' ); ?></label>
+            <div class="budgetura-settings-row">
+                <div class="budgetura-settings-label">
+                    <label for="currency_symbol"><?php _e( 'Currency Symbol', 'budgetura' ); ?></label>
                 </div>
-                <div class="dedebtify-settings-field">
+                <div class="budgetura-settings-field">
                     <input type="text" id="currency_symbol" name="currency_symbol" value="<?php echo esc_attr( $currency_symbol ); ?>" class="regular-text">
-                    <span class="description"><?php _e( 'The currency symbol to display (e.g., $, €, £)', 'dedebtify' ); ?></span>
+                    <span class="description"><?php _e( 'The currency symbol to display (e.g., $, €, £)', 'budgetura' ); ?></span>
                 </div>
             </div>
 
-            <div class="dedebtify-settings-row">
-                <div class="dedebtify-settings-label">
-                    <label for="default_interest_rate"><?php _e( 'Default Interest Rate', 'dedebtify' ); ?></label>
+            <div class="budgetura-settings-row">
+                <div class="budgetura-settings-label">
+                    <label for="default_interest_rate"><?php _e( 'Default Interest Rate', 'budgetura' ); ?></label>
                 </div>
-                <div class="dedebtify-settings-field">
+                <div class="budgetura-settings-field">
                     <input type="number" id="default_interest_rate" name="default_interest_rate" value="<?php echo esc_attr( $default_interest_rate ); ?>" step="0.01" min="0" max="100" class="regular-text">
-                    <span class="description"><?php _e( 'Default annual interest rate (%) for new credit cards', 'dedebtify' ); ?></span>
+                    <span class="description"><?php _e( 'Default annual interest rate (%) for new credit cards', 'budgetura' ); ?></span>
                 </div>
             </div>
 
-            <div class="dedebtify-settings-row">
-                <div class="dedebtify-settings-label">
-                    <label for="default_payoff_strategy"><?php _e( 'Default Payoff Strategy', 'dedebtify' ); ?></label>
+            <div class="budgetura-settings-row">
+                <div class="budgetura-settings-label">
+                    <label for="default_payoff_strategy"><?php _e( 'Default Payoff Strategy', 'budgetura' ); ?></label>
                 </div>
-                <div class="dedebtify-settings-field">
+                <div class="budgetura-settings-field">
                     <select id="default_payoff_strategy" name="default_payoff_strategy" class="regular-text">
-                        <option value="avalanche" <?php selected( $default_payoff_strategy, 'avalanche' ); ?>><?php _e( 'Avalanche (Highest Interest First)', 'dedebtify' ); ?></option>
-                        <option value="snowball" <?php selected( $default_payoff_strategy, 'snowball' ); ?>><?php _e( 'Snowball (Lowest Balance First)', 'dedebtify' ); ?></option>
+                        <option value="avalanche" <?php selected( $default_payoff_strategy, 'avalanche' ); ?>><?php _e( 'Avalanche (Highest Interest First)', 'budgetura' ); ?></option>
+                        <option value="snowball" <?php selected( $default_payoff_strategy, 'snowball' ); ?>><?php _e( 'Snowball (Lowest Balance First)', 'budgetura' ); ?></option>
                     </select>
-                    <span class="description"><?php _e( 'Default debt payoff strategy for new users', 'dedebtify' ); ?></span>
+                    <span class="description"><?php _e( 'Default debt payoff strategy for new users', 'budgetura' ); ?></span>
                 </div>
             </div>
         </div>
 
         <!-- Snapshot Settings -->
-        <div class="dedebtify-settings-section">
-            <h3><?php _e( 'Snapshot Settings', 'dedebtify' ); ?></h3>
+        <div class="budgetura-settings-section">
+            <h3><?php _e( 'Snapshot Settings', 'budgetura' ); ?></h3>
 
-            <div class="dedebtify-settings-row">
-                <div class="dedebtify-settings-label">
-                    <label for="snapshot_frequency"><?php _e( 'Snapshot Reminder Frequency', 'dedebtify' ); ?></label>
+            <div class="budgetura-settings-row">
+                <div class="budgetura-settings-label">
+                    <label for="snapshot_frequency"><?php _e( 'Snapshot Reminder Frequency', 'budgetura' ); ?></label>
                 </div>
-                <div class="dedebtify-settings-field">
+                <div class="budgetura-settings-field">
                     <select id="snapshot_frequency" name="snapshot_frequency" class="regular-text">
-                        <option value="weekly" <?php selected( $snapshot_frequency, 'weekly' ); ?>><?php _e( 'Weekly', 'dedebtify' ); ?></option>
-                        <option value="monthly" <?php selected( $snapshot_frequency, 'monthly' ); ?>><?php _e( 'Monthly', 'dedebtify' ); ?></option>
-                        <option value="quarterly" <?php selected( $snapshot_frequency, 'quarterly' ); ?>><?php _e( 'Quarterly', 'dedebtify' ); ?></option>
+                        <option value="weekly" <?php selected( $snapshot_frequency, 'weekly' ); ?>><?php _e( 'Weekly', 'budgetura' ); ?></option>
+                        <option value="monthly" <?php selected( $snapshot_frequency, 'monthly' ); ?>><?php _e( 'Monthly', 'budgetura' ); ?></option>
+                        <option value="quarterly" <?php selected( $snapshot_frequency, 'quarterly' ); ?>><?php _e( 'Quarterly', 'budgetura' ); ?></option>
                     </select>
-                    <span class="description"><?php _e( 'How often to remind users to create snapshots', 'dedebtify' ); ?></span>
+                    <span class="description"><?php _e( 'How often to remind users to create snapshots', 'budgetura' ); ?></span>
                 </div>
             </div>
         </div>
 
         <!-- Notification Settings -->
-        <div class="dedebtify-settings-section">
-            <h3><?php _e( 'Notification Settings', 'dedebtify' ); ?></h3>
+        <div class="budgetura-settings-section">
+            <h3><?php _e( 'Notification Settings', 'budgetura' ); ?></h3>
 
-            <div class="dedebtify-settings-row">
-                <div class="dedebtify-settings-label">
-                    <label for="notifications_enabled"><?php _e( 'Enable Notifications', 'dedebtify' ); ?></label>
+            <div class="budgetura-settings-row">
+                <div class="budgetura-settings-label">
+                    <label for="notifications_enabled"><?php _e( 'Enable Notifications', 'budgetura' ); ?></label>
                 </div>
-                <div class="dedebtify-settings-field">
+                <div class="budgetura-settings-field">
                     <label>
                         <input type="checkbox" id="notifications_enabled" name="notifications_enabled" value="1" <?php checked( $notifications_enabled, 1 ); ?>>
-                        <?php _e( 'Enable email notifications', 'dedebtify' ); ?>
+                        <?php _e( 'Enable email notifications', 'budgetura' ); ?>
                     </label>
-                    <span class="description"><?php _e( 'Send email notifications for important events', 'dedebtify' ); ?></span>
+                    <span class="description"><?php _e( 'Send email notifications for important events', 'budgetura' ); ?></span>
                 </div>
             </div>
 
-            <div class="dedebtify-settings-row">
-                <div class="dedebtify-settings-label">
-                    <label for="notification_email"><?php _e( 'Notification Email', 'dedebtify' ); ?></label>
+            <div class="budgetura-settings-row">
+                <div class="budgetura-settings-label">
+                    <label for="notification_email"><?php _e( 'Notification Email', 'budgetura' ); ?></label>
                 </div>
-                <div class="dedebtify-settings-field">
+                <div class="budgetura-settings-field">
                     <input type="email" id="notification_email" name="notification_email" value="<?php echo esc_attr( $notification_email ); ?>" class="regular-text">
-                    <span class="description"><?php _e( 'Email address for admin notifications', 'dedebtify' ); ?></span>
+                    <span class="description"><?php _e( 'Email address for admin notifications', 'budgetura' ); ?></span>
                 </div>
             </div>
         </div>
 
         <!-- Styling Settings -->
-        <div class="dedebtify-settings-section">
-            <h3><?php _e( 'Appearance Settings', 'dedebtify' ); ?></h3>
+        <div class="budgetura-settings-section">
+            <h3><?php _e( 'Appearance Settings', 'budgetura' ); ?></h3>
 
-            <div class="dedebtify-settings-row">
-                <div class="dedebtify-settings-label">
-                    <label for="primary_color"><?php _e( 'Primary Color', 'dedebtify' ); ?></label>
+            <div class="budgetura-settings-row">
+                <div class="budgetura-settings-label">
+                    <label for="primary_color"><?php _e( 'Primary Color', 'budgetura' ); ?></label>
                 </div>
-                <div class="dedebtify-settings-field">
+                <div class="budgetura-settings-field">
                     <input type="color" id="primary_color" name="primary_color" value="<?php echo esc_attr( $primary_color ); ?>">
-                    <span class="description"><?php _e( 'Main accent color for buttons and highlights', 'dedebtify' ); ?></span>
+                    <span class="description"><?php _e( 'Main accent color for buttons and highlights', 'budgetura' ); ?></span>
                 </div>
             </div>
 
-            <div class="dedebtify-settings-row">
-                <div class="dedebtify-settings-label">
-                    <label for="success_color"><?php _e( 'Success Color', 'dedebtify' ); ?></label>
+            <div class="budgetura-settings-row">
+                <div class="budgetura-settings-label">
+                    <label for="success_color"><?php _e( 'Success Color', 'budgetura' ); ?></label>
                 </div>
-                <div class="dedebtify-settings-field">
+                <div class="budgetura-settings-field">
                     <input type="color" id="success_color" name="success_color" value="<?php echo esc_attr( $success_color ); ?>">
-                    <span class="description"><?php _e( 'Color for positive changes and success messages', 'dedebtify' ); ?></span>
+                    <span class="description"><?php _e( 'Color for positive changes and success messages', 'budgetura' ); ?></span>
                 </div>
             </div>
 
-            <div class="dedebtify-settings-row">
-                <div class="dedebtify-settings-label">
-                    <label for="warning_color"><?php _e( 'Warning Color', 'dedebtify' ); ?></label>
+            <div class="budgetura-settings-row">
+                <div class="budgetura-settings-label">
+                    <label for="warning_color"><?php _e( 'Warning Color', 'budgetura' ); ?></label>
                 </div>
-                <div class="dedebtify-settings-field">
+                <div class="budgetura-settings-field">
                     <input type="color" id="warning_color" name="warning_color" value="<?php echo esc_attr( $warning_color ); ?>">
-                    <span class="description"><?php _e( 'Color for warnings and moderate alerts', 'dedebtify' ); ?></span>
+                    <span class="description"><?php _e( 'Color for warnings and moderate alerts', 'budgetura' ); ?></span>
                 </div>
             </div>
 
-            <div class="dedebtify-settings-row">
-                <div class="dedebtify-settings-label">
-                    <label for="danger_color"><?php _e( 'Danger Color', 'dedebtify' ); ?></label>
+            <div class="budgetura-settings-row">
+                <div class="budgetura-settings-label">
+                    <label for="danger_color"><?php _e( 'Danger Color', 'budgetura' ); ?></label>
                 </div>
-                <div class="dedebtify-settings-field">
+                <div class="budgetura-settings-field">
                     <input type="color" id="danger_color" name="danger_color" value="<?php echo esc_attr( $danger_color ); ?>">
-                    <span class="description"><?php _e( 'Color for errors and urgent issues', 'dedebtify' ); ?></span>
+                    <span class="description"><?php _e( 'Color for errors and urgent issues', 'budgetura' ); ?></span>
                 </div>
             </div>
 
-            <div class="dedebtify-settings-row">
-                <div class="dedebtify-settings-label">
-                    <label for="font_family"><?php _e( 'Font Family', 'dedebtify' ); ?></label>
+            <div class="budgetura-settings-row">
+                <div class="budgetura-settings-label">
+                    <label for="font_family"><?php _e( 'Font Family', 'budgetura' ); ?></label>
                 </div>
-                <div class="dedebtify-settings-field">
+                <div class="budgetura-settings-field">
                     <select id="font_family" name="font_family" class="regular-text">
-                        <option value="System Default" <?php selected( $font_family, 'System Default' ); ?>><?php _e( 'System Default', 'dedebtify' ); ?></option>
+                        <option value="System Default" <?php selected( $font_family, 'System Default' ); ?>><?php _e( 'System Default', 'budgetura' ); ?></option>
                         <option value="Arial, sans-serif" <?php selected( $font_family, 'Arial, sans-serif' ); ?>>Arial</option>
                         <option value="'Helvetica Neue', Helvetica, sans-serif" <?php selected( $font_family, "'Helvetica Neue', Helvetica, sans-serif" ); ?>>Helvetica</option>
                         <option value="'Segoe UI', Tahoma, sans-serif" <?php selected( $font_family, "'Segoe UI', Tahoma, sans-serif" ); ?>>Segoe UI</option>
@@ -260,61 +260,61 @@ $has_dummy_data = get_user_meta( get_current_user_id(), 'dd_has_dummy_data', tru
                         <option value="'Open Sans', sans-serif" <?php selected( $font_family, "'Open Sans', sans-serif" ); ?>>Open Sans</option>
                         <option value="Georgia, serif" <?php selected( $font_family, 'Georgia, serif' ); ?>>Georgia</option>
                     </select>
-                    <span class="description"><?php _e( 'Font family for all text', 'dedebtify' ); ?></span>
+                    <span class="description"><?php _e( 'Font family for all text', 'budgetura' ); ?></span>
                 </div>
             </div>
 
-            <div class="dedebtify-settings-row">
-                <div class="dedebtify-settings-label">
-                    <label for="border_radius"><?php _e( 'Border Radius (px)', 'dedebtify' ); ?></label>
+            <div class="budgetura-settings-row">
+                <div class="budgetura-settings-label">
+                    <label for="border_radius"><?php _e( 'Border Radius (px)', 'budgetura' ); ?></label>
                 </div>
-                <div class="dedebtify-settings-field">
+                <div class="budgetura-settings-field">
                     <input type="number" id="border_radius" name="border_radius" value="<?php echo esc_attr( $border_radius ); ?>" min="0" max="50" class="small-text">
-                    <span class="description"><?php _e( 'Roundness of corners (0 = square, higher = rounder)', 'dedebtify' ); ?></span>
+                    <span class="description"><?php _e( 'Roundness of corners (0 = square, higher = rounder)', 'budgetura' ); ?></span>
                 </div>
             </div>
         </div>
 
         <!-- Shortcodes Reference -->
-        <div class="dedebtify-settings-section">
-            <h3><?php _e( 'Available Shortcodes', 'dedebtify' ); ?></h3>
-            <p><?php _e( 'Use these shortcodes in your pages to display various components:', 'dedebtify' ); ?></p>
+        <div class="budgetura-settings-section">
+            <h3><?php _e( 'Available Shortcodes', 'budgetura' ); ?></h3>
+            <p><?php _e( 'Use these shortcodes in your pages to display various components:', 'budgetura' ); ?></p>
 
             <table class="widefat" style="max-width: 800px;">
                 <thead>
                     <tr>
-                        <th><?php _e( 'Shortcode', 'dedebtify' ); ?></th>
-                        <th><?php _e( 'Description', 'dedebtify' ); ?></th>
+                        <th><?php _e( 'Shortcode', 'budgetura' ); ?></th>
+                        <th><?php _e( 'Description', 'budgetura' ); ?></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td><code>[dedebtify_dashboard]</code></td>
-                        <td><?php _e( 'Display the complete user dashboard', 'dedebtify' ); ?></td>
+                        <td><code>[budgetura_dashboard]</code></td>
+                        <td><?php _e( 'Display the complete user dashboard', 'budgetura' ); ?></td>
                     </tr>
                     <tr>
-                        <td><code>[dedebtify_credit_cards]</code></td>
-                        <td><?php _e( 'Display credit card manager interface', 'dedebtify' ); ?></td>
+                        <td><code>[budgetura_credit_cards]</code></td>
+                        <td><?php _e( 'Display credit card manager interface', 'budgetura' ); ?></td>
                     </tr>
                     <tr>
-                        <td><code>[dedebtify_loans]</code></td>
-                        <td><?php _e( 'Display loans manager interface', 'dedebtify' ); ?></td>
+                        <td><code>[budgetura_loans]</code></td>
+                        <td><?php _e( 'Display loans manager interface', 'budgetura' ); ?></td>
                     </tr>
                     <tr>
-                        <td><code>[dedebtify_bills]</code></td>
-                        <td><?php _e( 'Display bills manager interface', 'dedebtify' ); ?></td>
+                        <td><code>[budgetura_bills]</code></td>
+                        <td><?php _e( 'Display bills manager interface', 'budgetura' ); ?></td>
                     </tr>
                     <tr>
-                        <td><code>[dedebtify_goals]</code></td>
-                        <td><?php _e( 'Display financial goals manager interface', 'dedebtify' ); ?></td>
+                        <td><code>[budgetura_goals]</code></td>
+                        <td><?php _e( 'Display financial goals manager interface', 'budgetura' ); ?></td>
                     </tr>
                     <tr>
-                        <td><code>[dedebtify_action_plan]</code></td>
-                        <td><?php _e( 'Display debt action plan generator', 'dedebtify' ); ?></td>
+                        <td><code>[budgetura_action_plan]</code></td>
+                        <td><?php _e( 'Display debt action plan generator', 'budgetura' ); ?></td>
                     </tr>
                     <tr>
-                        <td><code>[dedebtify_snapshots]</code></td>
-                        <td><?php _e( 'Display financial snapshots and progress tracking', 'dedebtify' ); ?></td>
+                        <td><code>[budgetura_snapshots]</code></td>
+                        <td><?php _e( 'Display financial snapshots and progress tracking', 'budgetura' ); ?></td>
                     </tr>
                 </tbody>
             </table>
@@ -322,22 +322,22 @@ $has_dummy_data = get_user_meta( get_current_user_id(), 'dd_has_dummy_data', tru
 
         <!-- Save Button -->
         <p class="submit">
-            <button type="submit" name="dedebtify_settings_submit" class="button button-primary">
-                <?php _e( 'Save Settings', 'dedebtify' ); ?>
+            <button type="submit" name="budgetura_settings_submit" class="button button-primary">
+                <?php _e( 'Save Settings', 'budgetura' ); ?>
             </button>
         </p>
 
     <!-- AI Coach Settings -->
-    <div class="dedebtify-settings-section" id="ai-coach">
-        <h3><?php _e( 'AI Financial Coach Settings', 'dedebtify' ); ?></h3>
+    <div class="budgetura-settings-section" id="ai-coach">
+        <h3><?php _e( 'AI Financial Coach Settings', 'budgetura' ); ?></h3>
         <p class="description">
-            <?php _e( 'Configure your AI provider to enable the AI Financial Coach feature. The AI Coach provides personalized financial advice and insights based on your data.', 'dedebtify' ); ?>
+            <?php _e( 'Configure your AI provider to enable the AI Financial Coach feature. The AI Coach provides personalized financial advice and insights based on your data.', 'budgetura' ); ?>
         </p>
 
         <table class="form-table">
             <tr>
                 <th scope="row">
-                    <label for="ai_provider"><?php _e( 'AI Provider', 'dedebtify' ); ?></label>
+                    <label for="ai_provider"><?php _e( 'AI Provider', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <select name="ai_provider" id="ai_provider" class="regular-text">
@@ -347,19 +347,19 @@ $has_dummy_data = get_user_meta( get_current_user_id(), 'dd_has_dummy_data', tru
                         <option value="openrouter" <?php selected( $ai_provider, 'openrouter' ); ?>>OpenRouter (Multi-Provider)</option>
                     </select>
                     <p class="description">
-                        <?php _e( 'Choose your preferred AI provider. OpenRouter provides access to multiple AI models through a single API key.', 'dedebtify' ); ?>
+                        <?php _e( 'Choose your preferred AI provider. OpenRouter provides access to multiple AI models through a single API key.', 'budgetura' ); ?>
                     </p>
                 </td>
             </tr>
 
             <tr>
                 <th scope="row">
-                    <label for="ai_api_key"><?php _e( 'API Key', 'dedebtify' ); ?></label>
+                    <label for="ai_api_key"><?php _e( 'API Key', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <input type="password" id="ai_api_key" name="ai_api_key" value="<?php echo esc_attr( $ai_api_key ); ?>" class="regular-text" autocomplete="off">
                     <p class="description">
-                        <?php _e( 'Get your API key from:', 'dedebtify' ); ?><br>
+                        <?php _e( 'Get your API key from:', 'budgetura' ); ?><br>
                         <strong>OpenAI:</strong> <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a><br>
                         <strong>Anthropic:</strong> <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a><br>
                         <strong>OpenRouter:</strong> <a href="https://openrouter.ai/keys" target="_blank">openrouter.ai/keys</a>
@@ -369,7 +369,7 @@ $has_dummy_data = get_user_meta( get_current_user_id(), 'dd_has_dummy_data', tru
 
             <tr>
                 <th scope="row">
-                    <label for="ai_model"><?php _e( 'AI Model', 'dedebtify' ); ?></label>
+                    <label for="ai_model"><?php _e( 'AI Model', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <select name="ai_model" id="ai_model" class="regular-text">
@@ -409,19 +409,19 @@ $has_dummy_data = get_user_meta( get_current_user_id(), 'dd_has_dummy_data', tru
                         </optgroup>
                     </select>
                     <p class="description">
-                        <?php _e( 'Select a predefined AI model, or use the custom model field below for any OpenRouter model.', 'dedebtify' ); ?>
+                        <?php _e( 'Select a predefined AI model, or use the custom model field below for any OpenRouter model.', 'budgetura' ); ?>
                     </p>
                 </td>
             </tr>
 
             <tr>
                 <th scope="row">
-                    <label for="ai_custom_model"><?php _e( 'Custom Model Path (OpenRouter)', 'dedebtify' ); ?></label>
+                    <label for="ai_custom_model"><?php _e( 'Custom Model Path (OpenRouter)', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <input type="text" id="ai_custom_model" name="ai_custom_model" value="<?php echo esc_attr( $ai_custom_model ); ?>" class="regular-text" placeholder="e.g., provider/model-name">
                     <p class="description">
-                        <?php _e( 'Enter any OpenRouter model path (e.g., "minimax/minimax-m2", "anthropic/claude-3.5-sonnet"). This overrides the dropdown selection above. Leave blank to use dropdown selection. Browse available models at:', 'dedebtify' ); ?>
+                        <?php _e( 'Enter any OpenRouter model path (e.g., "minimax/minimax-m2", "anthropic/claude-3.5-sonnet"). This overrides the dropdown selection above. Leave blank to use dropdown selection. Browse available models at:', 'budgetura' ); ?>
                         <a href="https://openrouter.ai/models" target="_blank">openrouter.ai/models</a>
                     </p>
                 </td>
@@ -429,100 +429,100 @@ $has_dummy_data = get_user_meta( get_current_user_id(), 'dd_has_dummy_data', tru
 
             <tr>
                 <th scope="row">
-                    <label for="ai_fallback_model"><?php _e( 'Fallback Model', 'dedebtify' ); ?></label>
+                    <label for="ai_fallback_model"><?php _e( 'Fallback Model', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <input type="text" id="ai_fallback_model" name="ai_fallback_model" value="<?php echo esc_attr( $ai_fallback_model ); ?>" class="regular-text" placeholder="e.g., anthropic/claude-3.5-haiku">
                     <p class="description">
-                        <?php _e( 'Optional: Model to use if the primary model fails or is unavailable (OpenRouter format: provider/model-name).', 'dedebtify' ); ?>
+                        <?php _e( 'Optional: Model to use if the primary model fails or is unavailable (OpenRouter format: provider/model-name).', 'budgetura' ); ?>
                     </p>
                 </td>
             </tr>
 
             <tr>
                 <th scope="row">
-                    <label for="ai_temperature"><?php _e( 'Temperature', 'dedebtify' ); ?></label>
+                    <label for="ai_temperature"><?php _e( 'Temperature', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <input type="number" id="ai_temperature" name="ai_temperature" value="<?php echo esc_attr( $ai_temperature ); ?>" min="0" max="2" step="0.1" class="small-text">
                     <p class="description">
-                        <?php _e( 'Controls randomness in responses (0 = focused and deterministic, 2 = creative and varied). Default: 0.7', 'dedebtify' ); ?>
+                        <?php _e( 'Controls randomness in responses (0 = focused and deterministic, 2 = creative and varied). Default: 0.7', 'budgetura' ); ?>
                     </p>
                 </td>
             </tr>
 
             <tr>
                 <th scope="row">
-                    <label for="ai_max_tokens"><?php _e( 'Max Tokens', 'dedebtify' ); ?></label>
+                    <label for="ai_max_tokens"><?php _e( 'Max Tokens', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <input type="number" id="ai_max_tokens" name="ai_max_tokens" value="<?php echo esc_attr( $ai_max_tokens ); ?>" min="100" max="16000" step="100" class="regular-text">
                     <p class="description">
-                        <?php _e( 'Maximum length of AI responses. Higher values allow longer responses but increase costs. Default: 2000', 'dedebtify' ); ?>
-                        <?php _e( 'Select which AI model to use. OpenRouter provides access to models from multiple providers through a single API key. More advanced models provide better responses but may cost more.', 'dedebtify' ); ?>
+                        <?php _e( 'Maximum length of AI responses. Higher values allow longer responses but increase costs. Default: 2000', 'budgetura' ); ?>
+                        <?php _e( 'Select which AI model to use. OpenRouter provides access to models from multiple providers through a single API key. More advanced models provide better responses but may cost more.', 'budgetura' ); ?>
                     </p>
                 </td>
             </tr>
         </table>
 
-        <div class="dedebtify-ai-status" style="background: #f0f0f1; padding: 15px; margin: 20px 0; border-radius: 4px;">
-            <h4 style="margin-top: 0;"><?php _e( 'AI Coach Status', 'dedebtify' ); ?></h4>
+        <div class="budgetura-ai-status" style="background: #f0f0f1; padding: 15px; margin: 20px 0; border-radius: 4px;">
+            <h4 style="margin-top: 0;"><?php _e( 'AI Coach Status', 'budgetura' ); ?></h4>
             <?php if ( !empty( $ai_api_key ) ) : ?>
                 <p>
                     <span class="dashicons dashicons-yes-alt" style="color: #00a32a;"></span>
-                    <?php _e( 'API key configured. AI Coach is ready to help your users!', 'dedebtify' ); ?>
+                    <?php _e( 'API key configured. AI Coach is ready to help your users!', 'budgetura' ); ?>
                 </p>
             <?php else : ?>
                 <p>
                     <span class="dashicons dashicons-warning" style="color: #dba617;"></span>
-                    <?php _e( 'No API key configured. Users will see setup instructions when they visit the AI Coach page.', 'dedebtify' ); ?>
+                    <?php _e( 'No API key configured. Users will see setup instructions when they visit the AI Coach page.', 'budgetura' ); ?>
                 </p>
             <?php endif; ?>
         </div>
 
-        <div class="dedebtify-info-box" style="background: #e7f5fe; border-left: 4px solid #2271b1; padding: 12px; margin-top: 20px;">
+        <div class="budgetura-info-box" style="background: #e7f5fe; border-left: 4px solid #2271b1; padding: 12px; margin-top: 20px;">
             <p style="margin: 0;">
-                <strong><?php _e( 'Privacy Note:', 'dedebtify' ); ?></strong>
-                <?php _e( 'When users attach their financial data to conversations, it is sent to the selected AI provider for analysis. Ensure your privacy policy reflects this. No data is stored by DeDebtify beyond the user\'s browser.', 'dedebtify' ); ?>
+                <strong><?php _e( 'Privacy Note:', 'budgetura' ); ?></strong>
+                <?php _e( 'When users attach their financial data to conversations, it is sent to the selected AI provider for analysis. Ensure your privacy policy reflects this. No data is stored by Budgetura beyond the user\'s browser.', 'budgetura' ); ?>
             </p>
         </div>
 
         <!-- Save Button -->
         <p class="submit">
-            <button type="submit" name="dedebtify_settings_submit" class="button button-primary">
-                <?php _e( 'Save AI Settings', 'dedebtify' ); ?>
+            <button type="submit" name="budgetura_settings_submit" class="button button-primary">
+                <?php _e( 'Save AI Settings', 'budgetura' ); ?>
             </button>
         </p>
     </div>
 
     <!-- Plaid Integration Settings -->
-    <div class="dedebtify-settings-section" id="plaid">
-        <h3><?php _e( 'Plaid Financial Data Integration', 'dedebtify' ); ?></h3>
+    <div class="budgetura-settings-section" id="plaid">
+        <h3><?php _e( 'Plaid Financial Data Integration', 'budgetura' ); ?></h3>
         <p class="description">
-            <?php _e( 'Connect DeDebtify with real financial institutions using Plaid. Users can automatically sync their account balances, transactions, and debt information.', 'dedebtify' ); ?>
+            <?php _e( 'Connect Budgetura with real financial institutions using Plaid. Users can automatically sync their account balances, transactions, and debt information.', 'budgetura' ); ?>
         </p>
 
         <table class="form-table">
             <tr>
                 <th scope="row">
-                    <label for="plaid_enabled"><?php _e( 'Enable Plaid Integration', 'dedebtify' ); ?></label>
+                    <label for="plaid_enabled"><?php _e( 'Enable Plaid Integration', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <label>
                         <input type="checkbox" id="plaid_enabled" name="plaid_enabled" value="1" <?php checked( $plaid_enabled, 1 ); ?>>
-                        <?php _e( 'Allow users to connect their bank accounts via Plaid', 'dedebtify' ); ?>
+                        <?php _e( 'Allow users to connect their bank accounts via Plaid', 'budgetura' ); ?>
                     </label>
                 </td>
             </tr>
 
             <tr>
                 <th scope="row">
-                    <label for="plaid_client_id"><?php _e( 'Plaid Client ID', 'dedebtify' ); ?></label>
+                    <label for="plaid_client_id"><?php _e( 'Plaid Client ID', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <input type="text" id="plaid_client_id" name="plaid_client_id" value="<?php echo esc_attr( $plaid_client_id ); ?>" class="regular-text" autocomplete="off">
                     <p class="description">
-                        <?php _e( 'Get your credentials from:', 'dedebtify' ); ?>
+                        <?php _e( 'Get your credentials from:', 'budgetura' ); ?>
                         <a href="https://dashboard.plaid.com" target="_blank">dashboard.plaid.com</a>
                     </p>
                 </td>
@@ -530,92 +530,92 @@ $has_dummy_data = get_user_meta( get_current_user_id(), 'dd_has_dummy_data', tru
 
             <tr>
                 <th scope="row">
-                    <label for="plaid_secret"><?php _e( 'Plaid Secret', 'dedebtify' ); ?></label>
+                    <label for="plaid_secret"><?php _e( 'Plaid Secret', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <input type="password" id="plaid_secret" name="plaid_secret" value="<?php echo esc_attr( $plaid_secret ); ?>" class="regular-text" autocomplete="off">
                     <p class="description">
-                        <?php _e( 'Your Plaid API secret key (stored securely)', 'dedebtify' ); ?>
+                        <?php _e( 'Your Plaid API secret key (stored securely)', 'budgetura' ); ?>
                     </p>
                 </td>
             </tr>
 
             <tr>
                 <th scope="row">
-                    <label for="plaid_environment"><?php _e( 'Environment', 'dedebtify' ); ?></label>
+                    <label for="plaid_environment"><?php _e( 'Environment', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <select name="plaid_environment" id="plaid_environment" class="regular-text">
-                        <option value="sandbox" <?php selected( $plaid_environment, 'sandbox' ); ?>><?php _e( 'Sandbox (Testing)', 'dedebtify' ); ?></option>
-                        <option value="development" <?php selected( $plaid_environment, 'development' ); ?>><?php _e( 'Development', 'dedebtify' ); ?></option>
-                        <option value="production" <?php selected( $plaid_environment, 'production' ); ?>><?php _e( 'Production (Live)', 'dedebtify' ); ?></option>
+                        <option value="sandbox" <?php selected( $plaid_environment, 'sandbox' ); ?>><?php _e( 'Sandbox (Testing)', 'budgetura' ); ?></option>
+                        <option value="development" <?php selected( $plaid_environment, 'development' ); ?>><?php _e( 'Development', 'budgetura' ); ?></option>
+                        <option value="production" <?php selected( $plaid_environment, 'production' ); ?>><?php _e( 'Production (Live)', 'budgetura' ); ?></option>
                     </select>
                     <p class="description">
-                        <?php _e( 'Use Sandbox for testing, Production for live sites', 'dedebtify' ); ?>
+                        <?php _e( 'Use Sandbox for testing, Production for live sites', 'budgetura' ); ?>
                     </p>
                 </td>
             </tr>
 
             <tr>
                 <th scope="row">
-                    <label for="plaid_auto_sync"><?php _e( 'Automatic Sync', 'dedebtify' ); ?></label>
+                    <label for="plaid_auto_sync"><?php _e( 'Automatic Sync', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <label>
                         <input type="checkbox" id="plaid_auto_sync" name="plaid_auto_sync" value="1" <?php checked( $plaid_auto_sync, 1 ); ?>>
-                        <?php _e( 'Automatically sync account data at scheduled intervals', 'dedebtify' ); ?>
+                        <?php _e( 'Automatically sync account data at scheduled intervals', 'budgetura' ); ?>
                     </label>
                 </td>
             </tr>
 
             <tr>
                 <th scope="row">
-                    <label for="plaid_sync_frequency"><?php _e( 'Sync Frequency', 'dedebtify' ); ?></label>
+                    <label for="plaid_sync_frequency"><?php _e( 'Sync Frequency', 'budgetura' ); ?></label>
                 </th>
                 <td>
                     <select name="plaid_sync_frequency" id="plaid_sync_frequency" class="regular-text">
-                        <option value="hourly" <?php selected( $plaid_sync_frequency, 'hourly' ); ?>><?php _e( 'Every Hour', 'dedebtify' ); ?></option>
-                        <option value="daily" <?php selected( $plaid_sync_frequency, 'daily' ); ?>><?php _e( 'Daily (Recommended)', 'dedebtify' ); ?></option>
-                        <option value="weekly" <?php selected( $plaid_sync_frequency, 'weekly' ); ?>><?php _e( 'Weekly', 'dedebtify' ); ?></option>
+                        <option value="hourly" <?php selected( $plaid_sync_frequency, 'hourly' ); ?>><?php _e( 'Every Hour', 'budgetura' ); ?></option>
+                        <option value="daily" <?php selected( $plaid_sync_frequency, 'daily' ); ?>><?php _e( 'Daily (Recommended)', 'budgetura' ); ?></option>
+                        <option value="weekly" <?php selected( $plaid_sync_frequency, 'weekly' ); ?>><?php _e( 'Weekly', 'budgetura' ); ?></option>
                     </select>
                     <p class="description">
-                        <?php _e( 'How often to refresh account balances and transactions. Users can also manually sync anytime.', 'dedebtify' ); ?>
+                        <?php _e( 'How often to refresh account balances and transactions. Users can also manually sync anytime.', 'budgetura' ); ?>
                     </p>
                 </td>
             </tr>
         </table>
 
-        <div class="dedebtify-plaid-status" style="background: #f0f0f1; padding: 15px; margin: 20px 0; border-radius: 4px;">
-            <h4 style="margin-top: 0;"><?php _e( 'Plaid Integration Status', 'dedebtify' ); ?></h4>
+        <div class="budgetura-plaid-status" style="background: #f0f0f1; padding: 15px; margin: 20px 0; border-radius: 4px;">
+            <h4 style="margin-top: 0;"><?php _e( 'Plaid Integration Status', 'budgetura' ); ?></h4>
             <?php if ( $plaid_enabled && !empty( $plaid_client_id ) && !empty( $plaid_secret ) ) : ?>
                 <p>
                     <span class="dashicons dashicons-yes-alt" style="color: #00a32a;"></span>
-                    <?php printf( __( 'Plaid is configured and running in %s mode. Users can connect their financial accounts!', 'dedebtify' ), '<strong>' . esc_html( $plaid_environment ) . '</strong>' ); ?>
+                    <?php printf( __( 'Plaid is configured and running in %s mode. Users can connect their financial accounts!', 'budgetura' ), '<strong>' . esc_html( $plaid_environment ) . '</strong>' ); ?>
                 </p>
             <?php elseif ( $plaid_enabled ) : ?>
                 <p>
                     <span class="dashicons dashicons-warning" style="color: #dba617;"></span>
-                    <?php _e( 'Plaid is enabled but credentials are missing. Add your Client ID and Secret above.', 'dedebtify' ); ?>
+                    <?php _e( 'Plaid is enabled but credentials are missing. Add your Client ID and Secret above.', 'budgetura' ); ?>
                 </p>
             <?php else : ?>
                 <p>
                     <span class="dashicons dashicons-info" style="color: #2271b1;"></span>
-                    <?php _e( 'Plaid integration is disabled. Enable it to allow automatic account syncing.', 'dedebtify' ); ?>
+                    <?php _e( 'Plaid integration is disabled. Enable it to allow automatic account syncing.', 'budgetura' ); ?>
                 </p>
             <?php endif; ?>
         </div>
 
-        <div class="dedebtify-info-box" style="background: #fef9e7; border-left: 4px solid #f59e0b; padding: 12px; margin-top: 10px;">
+        <div class="budgetura-info-box" style="background: #fef9e7; border-left: 4px solid #f59e0b; padding: 12px; margin-top: 10px;">
             <p style="margin: 0;">
-                <strong><?php _e( 'Privacy & Security:', 'dedebtify' ); ?></strong>
-                <?php _e( 'All financial data retrieved via Plaid is encrypted in transit and at rest. Access tokens are stored securely in the WordPress database with proper sanitization. Users can disconnect their accounts at any time from their account settings page.', 'dedebtify' ); ?>
+                <strong><?php _e( 'Privacy & Security:', 'budgetura' ); ?></strong>
+                <?php _e( 'All financial data retrieved via Plaid is encrypted in transit and at rest. Access tokens are stored securely in the WordPress database with proper sanitization. Users can disconnect their accounts at any time from their account settings page.', 'budgetura' ); ?>
             </p>
         </div>
 
         <!-- Save Button -->
         <p class="submit">
-            <button type="submit" name="dedebtify_settings_submit" class="button button-primary">
-                <?php _e( 'Save Plaid Settings', 'dedebtify' ); ?>
+            <button type="submit" name="budgetura_settings_submit" class="button button-primary">
+                <?php _e( 'Save Plaid Settings', 'budgetura' ); ?>
             </button>
         </p>
     </div>
@@ -623,62 +623,62 @@ $has_dummy_data = get_user_meta( get_current_user_id(), 'dd_has_dummy_data', tru
     </form>
 
     <!-- Dummy Data Management -->
-    <div class="dedebtify-settings-section" style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 30px;">
-        <h3><?php _e( 'Dummy Data Management', 'dedebtify' ); ?></h3>
-        <p class="description"><?php _e( 'Use dummy data to test the plugin or demo it to potential users. All dummy data is user-specific and can be completely removed.', 'dedebtify' ); ?></p>
+    <div class="budgetura-settings-section" style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 30px;">
+        <h3><?php _e( 'Dummy Data Management', 'budgetura' ); ?></h3>
+        <p class="description"><?php _e( 'Use dummy data to test the plugin or demo it to potential users. All dummy data is user-specific and can be completely removed.', 'budgetura' ); ?></p>
 
         <?php if ( $has_dummy_data ) : ?>
             <div class="notice notice-info inline">
-                <p><strong><?php _e( 'You currently have dummy data installed.', 'dedebtify' ); ?></strong></p>
-                <p><?php _e( 'Dummy data includes: 3 credit cards, 2 loans, 1 mortgage, 6 bills, 3 goals, and 3 historical snapshots.', 'dedebtify' ); ?></p>
+                <p><strong><?php _e( 'You currently have dummy data installed.', 'budgetura' ); ?></strong></p>
+                <p><?php _e( 'Dummy data includes: 3 credit cards, 2 loans, 1 mortgage, 6 bills, 3 goals, and 3 historical snapshots.', 'budgetura' ); ?></p>
             </div>
 
             <form method="post" action="" style="margin-top: 20px;">
-                <?php wp_nonce_field( 'dedebtify_dummy_data_nonce' ); ?>
-                <button type="submit" name="dedebtify_wipe_dummy_data" class="button button-secondary" onclick="return confirm('<?php _e( 'Are you sure you want to delete all dummy data? This cannot be undone.', 'dedebtify' ); ?>');">
-                    <?php _e( 'Wipe All Dummy Data', 'dedebtify' ); ?>
+                <?php wp_nonce_field( 'budgetura_dummy_data_nonce' ); ?>
+                <button type="submit" name="budgetura_wipe_dummy_data" class="button button-secondary" onclick="return confirm('<?php _e( 'Are you sure you want to delete all dummy data? This cannot be undone.', 'budgetura' ); ?>');">
+                    <?php _e( 'Wipe All Dummy Data', 'budgetura' ); ?>
                 </button>
             </form>
         <?php else : ?>
             <div class="notice notice-warning inline">
-                <p><?php _e( 'No dummy data found. Generate sample data to see how the plugin works.', 'dedebtify' ); ?></p>
+                <p><?php _e( 'No dummy data found. Generate sample data to see how the plugin works.', 'budgetura' ); ?></p>
             </div>
 
             <form method="post" action="" style="margin-top: 20px;">
-                <?php wp_nonce_field( 'dedebtify_dummy_data_nonce' ); ?>
-                <button type="submit" name="dedebtify_generate_dummy_data" class="button button-primary">
-                    <?php _e( 'Generate Dummy Data', 'dedebtify' ); ?>
+                <?php wp_nonce_field( 'budgetura_dummy_data_nonce' ); ?>
+                <button type="submit" name="budgetura_generate_dummy_data" class="button button-primary">
+                    <?php _e( 'Generate Dummy Data', 'budgetura' ); ?>
                 </button>
                 <p class="description" style="margin-top: 10px;">
-                    <?php _e( 'This will create realistic sample data including credit cards, loans, mortgage, bills, goals, and historical snapshots.', 'dedebtify' ); ?>
+                    <?php _e( 'This will create realistic sample data including credit cards, loans, mortgage, bills, goals, and historical snapshots.', 'budgetura' ); ?>
                 </p>
             </form>
         <?php endif; ?>
     </div>
 
     <!-- System Information -->
-    <div class="dedebtify-settings-section">
-        <h3><?php _e( 'System Information', 'dedebtify' ); ?></h3>
+    <div class="budgetura-settings-section">
+        <h3><?php _e( 'System Information', 'budgetura' ); ?></h3>
 
         <table class="widefat" style="max-width: 600px;">
             <tr>
-                <th style="width: 250px;"><?php _e( 'Plugin Version', 'dedebtify' ); ?></th>
-                <td><?php echo DEDEBTIFY_VERSION; ?></td>
+                <th style="width: 250px;"><?php _e( 'Plugin Version', 'budgetura' ); ?></th>
+                <td><?php echo BUDGETURA_VERSION; ?></td>
             </tr>
             <tr>
-                <th><?php _e( 'WordPress Version', 'dedebtify' ); ?></th>
+                <th><?php _e( 'WordPress Version', 'budgetura' ); ?></th>
                 <td><?php echo get_bloginfo( 'version' ); ?></td>
             </tr>
             <tr>
-                <th><?php _e( 'PHP Version', 'dedebtify' ); ?></th>
+                <th><?php _e( 'PHP Version', 'budgetura' ); ?></th>
                 <td><?php echo PHP_VERSION; ?></td>
             </tr>
             <tr>
-                <th><?php _e( 'Database Version', 'dedebtify' ); ?></th>
+                <th><?php _e( 'Database Version', 'budgetura' ); ?></th>
                 <td><?php global $wpdb; echo $wpdb->db_version(); ?></td>
             </tr>
             <tr>
-                <th><?php _e( 'Server Software', 'dedebtify' ); ?></th>
+                <th><?php _e( 'Server Software', 'budgetura' ); ?></th>
                 <td><?php echo $_SERVER['SERVER_SOFTWARE']; ?></td>
             </tr>
         </table>

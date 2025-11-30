@@ -1,0 +1,398 @@
+/**
+ * Budgetura Print Styles
+ *
+ * @since      1.0.0
+ * @package    Budgetura
+ */
+
+@media print {
+    /* Hide non-essential elements */
+    .site-header,
+    .site-footer,
+    .sidebar,
+    .navigation,
+    .budgetura-btn,
+    .budgetura-actions,
+    .print-hide,
+    header,
+    footer,
+    nav {
+        display: none !important;
+    }
+
+    /* Reset body */
+    body {
+        font-size: 12pt;
+        color: #000;
+        background: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Container */
+    .budgetura-dashboard {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Header */
+    .budgetura-dashboard-header {
+        text-align: left;
+        border-bottom: 2px solid #000;
+        padding-bottom: 10pt;
+        margin-bottom: 20pt;
+    }
+
+    .budgetura-dashboard-header h1 {
+        font-size: 18pt;
+        margin: 0 0 5pt 0;
+        color: #000;
+    }
+
+    .budgetura-dashboard-header p {
+        font-size: 11pt;
+        color: #333;
+        margin: 0;
+    }
+
+    /* Stats Grid */
+    .budgetura-stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15pt;
+        margin-bottom: 20pt;
+        page-break-inside: avoid;
+    }
+
+    .budgetura-stat-card {
+        border: 1px solid #000;
+        padding: 10pt;
+        background: #fff;
+        box-shadow: none;
+        border-radius: 0;
+        page-break-inside: avoid;
+    }
+
+    .budgetura-stat-label {
+        font-size: 9pt;
+        color: #333;
+        margin-bottom: 5pt;
+        text-transform: uppercase;
+    }
+
+    .budgetura-stat-value {
+        font-size: 16pt;
+        color: #000;
+        margin: 5pt 0;
+    }
+
+    .budgetura-stat-subtext {
+        font-size: 8pt;
+        color: #666;
+    }
+
+    /* Card List */
+    .budgetura-card-list {
+        page-break-before: auto;
+    }
+
+    .budgetura-card-item {
+        border: 1px solid #000;
+        padding: 10pt;
+        margin-bottom: 10pt;
+        background: #fff;
+        box-shadow: none;
+        border-radius: 0;
+        page-break-inside: avoid;
+    }
+
+    .budgetura-card-header {
+        border-bottom: 1px solid #000;
+        padding-bottom: 5pt;
+        margin-bottom: 10pt;
+    }
+
+    .budgetura-card-name {
+        font-size: 12pt;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .budgetura-card-badge {
+        border: 1px solid #000;
+        padding: 2pt 5pt;
+        font-size: 8pt;
+    }
+
+    .budgetura-card-details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10pt;
+    }
+
+    .budgetura-card-detail-label {
+        font-size: 9pt;
+        color: #333;
+    }
+
+    .budgetura-card-detail-value {
+        font-size: 11pt;
+        font-weight: bold;
+        color: #000;
+    }
+
+    /* Progress Bars - Show as text instead */
+    .budgetura-progress {
+        display: none;
+    }
+
+    .budgetura-progress::after {
+        content: attr(data-value) "%";
+        display: block;
+        font-weight: bold;
+    }
+
+    /* Forms - Hide in print */
+    .budgetura-form {
+        display: none;
+    }
+
+    /* Page breaks */
+    .budgetura-section {
+        page-break-inside: avoid;
+    }
+
+    .budgetura-page-break {
+        page-break-after: always;
+    }
+
+    /* Print header on each page */
+    @page {
+        margin: 1cm;
+    }
+
+    /* Links - show URLs */
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 9pt;
+        color: #666;
+    }
+
+    /* No links for internal anchors */
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    /* Tables */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        page-break-inside: avoid;
+    }
+
+    table th,
+    table td {
+        border: 1px solid #000;
+        padding: 5pt;
+        text-align: left;
+    }
+
+    table th {
+        background: #f0f0f0;
+        font-weight: bold;
+    }
+
+    /* Messages */
+    .budgetura-message {
+        border: 1px solid #000;
+        padding: 10pt;
+        margin-bottom: 10pt;
+        background: #f9f9f9;
+    }
+
+    /* Action Plan Specific Styles */
+    .budgetura-action-plan .budgetura-form-container {
+        display: none;
+    }
+
+    .budgetura-timeline-item {
+        border: 1px solid #000;
+        padding: 10pt;
+        margin-bottom: 10pt;
+        page-break-inside: avoid;
+    }
+
+    .budgetura-timeline-number {
+        display: inline-block;
+        width: 30pt;
+        height: 30pt;
+        border: 2px solid #000;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30pt;
+        font-weight: bold;
+        margin-right: 10pt;
+    }
+
+    .budgetura-timeline-content {
+        border: none;
+        padding: 0;
+    }
+
+    .budgetura-timeline-item::after {
+        display: none;
+    }
+
+    .payoff-badge {
+        border: 1px solid #000;
+        padding: 3pt 8pt;
+        font-size: 9pt;
+    }
+
+    .budgetura-action-number {
+        display: inline-block;
+        width: 25pt;
+        height: 25pt;
+        border: 2px solid #000;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 25pt;
+        font-weight: bold;
+        margin-right: 10pt;
+    }
+
+    .budgetura-comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10pt;
+        page-break-inside: avoid;
+    }
+
+    .budgetura-comparison-vs {
+        display: none;
+    }
+
+    /* Snapshots Specific Styles */
+    .budgetura-snapshot-actions {
+        display: none;
+    }
+
+    .budgetura-snapshot-item {
+        border: 1px solid #000;
+        padding: 10pt;
+        margin-bottom: 10pt;
+        page-break-inside: avoid;
+    }
+
+    .budgetura-snapshots-timeline::before {
+        display: none;
+    }
+
+    .snapshot-marker {
+        display: none;
+    }
+
+    .snapshot-badge {
+        border: 1px solid #000;
+        padding: 2pt 6pt;
+        font-size: 8pt;
+    }
+
+    .budgetura-snapshot-metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8pt;
+    }
+
+    .budgetura-comparison-selector {
+        display: none;
+    }
+
+    .chart-bars {
+        display: none;
+    }
+
+    /* Hide interactive elements */
+    button,
+    .budgetura-btn,
+    .budgetura-action-btn,
+    .budgetura-action-card button {
+        display: none !important;
+    }
+
+    /* Show print-specific elements */
+    .print-only {
+        display: block !important;
+    }
+
+    /* Payment Schedule Table */
+    .budgetura-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 9pt;
+    }
+
+    .budgetura-table th {
+        background: #e0e0e0 !important;
+        border: 1px solid #000 !important;
+        padding: 5pt;
+    }
+
+    .budgetura-table td {
+        border: 1px solid #000 !important;
+        padding: 5pt;
+    }
+
+    .schedule-gap {
+        background: #f5f5f5 !important;
+    }
+
+    /* Ensure black and white friendly */
+    * {
+        color: #000 !important;
+        background: #fff !important;
+    }
+
+    /* But allow borders and light backgrounds */
+    .budgetura-stat-card,
+    .budgetura-card-item,
+    .budgetura-message,
+    .budgetura-timeline-item,
+    .budgetura-snapshot-item {
+        background: #fff !important;
+        border-color: #000 !important;
+    }
+
+    .budgetura-table th,
+    .schedule-gap {
+        background: #f0f0f0 !important;
+    }
+
+    /* Print header/footer */
+    @page {
+        margin: 1.5cm;
+
+        @top-right {
+            content: "Budgetura Report - Page " counter(page);
+            font-size: 9pt;
+            color: #666;
+        }
+
+        @bottom-left {
+            content: "Generated: " string(current-date);
+            font-size: 8pt;
+            color: #666;
+        }
+    }
+
+    /* Add print timestamp */
+    .budgetura-dashboard::before {
+        content: "Printed: " attr(data-print-date);
+        display: block;
+        font-size: 8pt;
+        color: #666;
+        text-align: right;
+        margin-bottom: 10pt;
+    }
+}

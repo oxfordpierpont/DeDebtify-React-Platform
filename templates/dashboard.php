@@ -9,7 +9,7 @@ if (!defined('WPINC')) {
 }
 
 if (!is_user_logged_in()) {
-    echo '<p>' . __('Please log in to view your dashboard.', 'dedebtify') . '</p>';
+    echo '<p>' . __('Please log in to view your dashboard.', 'budgetura') . '</p>';
     return;
 }
 
@@ -38,60 +38,60 @@ $loans = get_posts(array('post_type' => 'dd_loan', 'author' => $user_id, 'posts_
 
         <!-- Navigation -->
         <nav class="dd-sidebar-nav">
-            <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('dashboard')); ?>" class="dd-nav-item active">
+            <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('dashboard')); ?>" class="dd-nav-item active">
                 <div class="dd-nav-item-icon">
                     <span class="dashicons dashicons-dashboard"></span>
                 </div>
-                <span class="dd-nav-item-label"><?php _e('Dashboard', 'dedebtify'); ?></span>
+                <span class="dd-nav-item-label"><?php _e('Dashboard', 'budgetura'); ?></span>
                 <div class="dd-nav-active-indicator"></div>
             </a>
-            <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('credit_cards')); ?>" class="dd-nav-item">
+            <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('credit_cards')); ?>" class="dd-nav-item">
                 <div class="dd-nav-item-icon">
                     <span class="dashicons dashicons-money-alt"></span>
                 </div>
-                <span class="dd-nav-item-label"><?php _e('Credit Cards', 'dedebtify'); ?></span>
+                <span class="dd-nav-item-label"><?php _e('Credit Cards', 'budgetura'); ?></span>
             </a>
-            <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('loans')); ?>" class="dd-nav-item">
+            <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('loans')); ?>" class="dd-nav-item">
                 <div class="dd-nav-item-icon">
                     <span class="dashicons dashicons-admin-site-alt3"></span>
                 </div>
-                <span class="dd-nav-item-label"><?php _e('Loans', 'dedebtify'); ?></span>
+                <span class="dd-nav-item-label"><?php _e('Loans', 'budgetura'); ?></span>
             </a>
-            <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('mortgages')); ?>" class="dd-nav-item">
+            <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('mortgages')); ?>" class="dd-nav-item">
                 <div class="dd-nav-item-icon">
                     <span class="dashicons dashicons-admin-home"></span>
                 </div>
-                <span class="dd-nav-item-label"><?php _e('Mortgage', 'dedebtify'); ?></span>
+                <span class="dd-nav-item-label"><?php _e('Mortgage', 'budgetura'); ?></span>
             </a>
-            <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('bills')); ?>" class="dd-nav-item">
+            <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('bills')); ?>" class="dd-nav-item">
                 <div class="dd-nav-item-icon">
                     <span class="dashicons dashicons-list-view"></span>
                 </div>
-                <span class="dd-nav-item-label"><?php _e('Bills', 'dedebtify'); ?></span>
+                <span class="dd-nav-item-label"><?php _e('Bills', 'budgetura'); ?></span>
             </a>
-            <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('goals')); ?>" class="dd-nav-item">
+            <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('goals')); ?>" class="dd-nav-item">
                 <div class="dd-nav-item-icon">
                     <span class="dashicons dashicons-star-filled"></span>
                 </div>
-                <span class="dd-nav-item-label"><?php _e('Goals', 'dedebtify'); ?></span>
+                <span class="dd-nav-item-label"><?php _e('Goals', 'budgetura'); ?></span>
             </a>
-            <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('snapshots')); ?>" class="dd-nav-item">
+            <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('snapshots')); ?>" class="dd-nav-item">
                 <div class="dd-nav-item-icon">
                     <span class="dashicons dashicons-chart-line"></span>
                 </div>
-                <span class="dd-nav-item-label"><?php _e('Progress', 'dedebtify'); ?></span>
+                <span class="dd-nav-item-label"><?php _e('Progress', 'budgetura'); ?></span>
             </a>
-            <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('ai_coach')); ?>" class="dd-nav-item">
+            <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('ai_coach')); ?>" class="dd-nav-item">
                 <div class="dd-nav-item-icon">
                     <span class="dashicons dashicons-welcome-learn-more"></span>
                 </div>
-                <span class="dd-nav-item-label"><?php _e('AI Coach', 'dedebtify'); ?></span>
+                <span class="dd-nav-item-label"><?php _e('AI Coach', 'budgetura'); ?></span>
             </a>
             <a href="#" class="dd-nav-item">
                 <div class="dd-nav-item-icon">
                     <span class="dashicons dashicons-admin-generic"></span>
                 </div>
-                <span class="dd-nav-item-label"><?php _e('Settings', 'dedebtify'); ?></span>
+                <span class="dd-nav-item-label"><?php _e('Settings', 'budgetura'); ?></span>
             </a>
         </nav>
 
@@ -99,7 +99,7 @@ $loans = get_posts(array('post_type' => 'dd_loan', 'author' => $user_id, 'posts_
         <div class="dd-sidebar-logout">
             <a href="<?php echo wp_logout_url(home_url()); ?>" class="dd-logout-btn">
                 <span class="dashicons dashicons-exit"></span>
-                <span class="dd-nav-item-label"><?php _e('Logout', 'dedebtify'); ?></span>
+                <span class="dd-nav-item-label"><?php _e('Logout', 'budgetura'); ?></span>
             </a>
         </div>
     </aside>
@@ -114,8 +114,8 @@ $loans = get_posts(array('post_type' => 'dd_loan', 'author' => $user_id, 'posts_
             <header class="dd-header">
                 <div class="dd-header-top">
                     <div>
-                        <h1 class="dd-header-title"><?php printf(__('Welcome back, %s!', 'dedebtify'), esc_html($display_name)); ?></h1>
-                        <p class="dd-header-subtitle"><?php _e("Here's your current financial overview", 'dedebtify'); ?></p>
+                        <h1 class="dd-header-title"><?php printf(__('Welcome back, %s!', 'budgetura'), esc_html($display_name)); ?></h1>
+                        <p class="dd-header-subtitle"><?php _e("Here's your current financial overview", 'budgetura'); ?></p>
                     </div>
                     <div class="dd-header-actions">
                         <button class="dd-header-icon-btn">
@@ -130,14 +130,14 @@ $loans = get_posts(array('post_type' => 'dd_loan', 'author' => $user_id, 'posts_
 
                 <!-- Quick Actions Toolbar -->
                 <div class="dd-toolbar">
-                    <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('snapshots')); ?>" class="dd-btn-primary-exact">
+                    <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('snapshots')); ?>" class="dd-btn-primary-exact">
                         <span class="dashicons dashicons-plus"></span>
-                        <?php _e('Create Snapshot', 'dedebtify'); ?>
+                        <?php _e('Create Snapshot', 'budgetura'); ?>
                     </a>
-                    <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('credit_cards')); ?>" class="dd-btn-secondary-exact"><?php _e('View Cards', 'dedebtify'); ?></a>
-                    <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('loans')); ?>" class="dd-btn-secondary-exact"><?php _e('View Loans', 'dedebtify'); ?></a>
-                    <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('bills')); ?>" class="dd-btn-secondary-exact"><?php _e('View Bills', 'dedebtify'); ?></a>
-                    <a href="<?php echo esc_url(Dedebtify_Helpers::get_page_url('goals')); ?>" class="dd-btn-secondary-exact"><?php _e('View Goals', 'dedebtify'); ?></a>
+                    <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('credit_cards')); ?>" class="dd-btn-secondary-exact"><?php _e('View Cards', 'budgetura'); ?></a>
+                    <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('loans')); ?>" class="dd-btn-secondary-exact"><?php _e('View Loans', 'budgetura'); ?></a>
+                    <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('bills')); ?>" class="dd-btn-secondary-exact"><?php _e('View Bills', 'budgetura'); ?></a>
+                    <a href="<?php echo esc_url(Budgetura_Helpers::get_page_url('goals')); ?>" class="dd-btn-secondary-exact"><?php _e('View Goals', 'budgetura'); ?></a>
                 </div>
             </header>
 
@@ -145,7 +145,7 @@ $loans = get_posts(array('post_type' => 'dd_loan', 'author' => $user_id, 'posts_
                 <!-- Debt Breakdown Section -->
                 <section class="dd-section-card">
                     <div class="dd-section-header">
-                        <h3 class="dd-section-title"><?php _e('Debt Breakdown', 'dedebtify'); ?></h3>
+                        <h3 class="dd-section-title"><?php _e('Debt Breakdown', 'budgetura'); ?></h3>
                         <button class="dd-header-icon-btn">
                             <span class="dashicons dashicons-filter"></span>
                         </button>
@@ -169,7 +169,7 @@ $loans = get_posts(array('post_type' => 'dd_loan', 'author' => $user_id, 'posts_
                         <div class="dd-legend-item">
                             <div class="dd-legend-dot" style="background: #EF4444;"></div>
                             <div>
-                                <p class="dd-legend-category"><?php _e('Credit Cards', 'dedebtify'); ?></p>
+                                <p class="dd-legend-category"><?php _e('Credit Cards', 'budgetura'); ?></p>
                                 <div>
                                     <span class="dd-legend-amount">$9,625</span>
                                     <span class="dd-legend-percentage">(3.2%)</span>
@@ -179,7 +179,7 @@ $loans = get_posts(array('post_type' => 'dd_loan', 'author' => $user_id, 'posts_
                         <div class="dd-legend-item">
                             <div class="dd-legend-dot" style="background: #F59E0B;"></div>
                             <div>
-                                <p class="dd-legend-category"><?php _e('Loans', 'dedebtify'); ?></p>
+                                <p class="dd-legend-category"><?php _e('Loans', 'budgetura'); ?></p>
                                 <div>
                                     <span class="dd-legend-amount">$51,250</span>
                                     <span class="dd-legend-percentage">(17.1%)</span>
@@ -189,7 +189,7 @@ $loans = get_posts(array('post_type' => 'dd_loan', 'author' => $user_id, 'posts_
                         <div class="dd-legend-item">
                             <div class="dd-legend-dot" style="background: #3B82F6;"></div>
                             <div>
-                                <p class="dd-legend-category"><?php _e('Mortgage', 'dedebtify'); ?></p>
+                                <p class="dd-legend-category"><?php _e('Mortgage', 'budgetura'); ?></p>
                                 <div>
                                     <span class="dd-legend-amount">$238,500</span>
                                     <span class="dd-legend-percentage">(79.7%)</span>
@@ -205,7 +205,7 @@ $loans = get_posts(array('post_type' => 'dd_loan', 'author' => $user_id, 'posts_
                     <!-- Credit Cards Column -->
                     <section>
                         <div class="dd-section-header">
-                            <h3 class="dd-section-title"><?php _e('Active Credit Cards', 'dedebtify'); ?></h3>
+                            <h3 class="dd-section-title"><?php _e('Active Credit Cards', 'budgetura'); ?></h3>
                             <span class="dd-badge dd-badge-blue">3 Active</span>
                         </div>
                         
@@ -327,13 +327,13 @@ $loans = get_posts(array('post_type' => 'dd_loan', 'author' => $user_id, 'posts_
                     <!-- Loans Column -->
                     <section>
                         <div class="dd-section-header">
-                            <h3 class="dd-section-title"><?php _e('Loans', 'dedebtify'); ?></h3>
+                            <h3 class="dd-section-title"><?php _e('Loans', 'budgetura'); ?></h3>
                             <span class="dd-badge dd-badge-orange">2 Active</span>
                         </div>
                         
                         <div id="dd-loans-list">
                             <!-- Loans will be loaded via JavaScript or rendered here -->
-                            <p style="text-align: center; color: #6b7280; padding: 40px;"><?php _e('Loans section coming soon', 'dedebtify'); ?></p>
+                            <p style="text-align: center; color: #6b7280; padding: 40px;"><?php _e('Loans section coming soon', 'budgetura'); ?></p>
                         </div>
                     </section>
 
@@ -343,8 +343,8 @@ $loans = get_posts(array('post_type' => 'dd_loan', 'author' => $user_id, 'posts_
 
         <!-- Right Sidebar (Goals, Bills, Promo) -->
         <div class="dd-right-sidebar">
-            <h3 class="dd-section-title" style="margin-bottom: 24px;"><?php _e('Goals & Bills', 'dedebtify'); ?></h3>
-            <p style="text-align: center; color: #6b7280; padding: 40px 20px;"><?php _e('Right sidebar widgets coming soon', 'dedebtify'); ?></p>
+            <h3 class="dd-section-title" style="margin-bottom: 24px;"><?php _e('Goals & Bills', 'budgetura'); ?></h3>
+            <p style="text-align: center; color: #6b7280; padding: 40px 20px;"><?php _e('Right sidebar widgets coming soon', 'budgetura'); ?></p>
         </div>
 
     </main>

@@ -5,8 +5,8 @@
  * This template allows users to link and sync their financial accounts
  *
  * @since      1.0.0
- * @package    Dedebtify
- * @subpackage Dedebtify/templates
+ * @package    Budgetura
+ * @subpackage Budgetura/templates
  */
 
 // If this file is called directly, abort.
@@ -16,22 +16,22 @@ if ( ! defined( 'WPINC' ) ) {
 
 // Check if user is logged in
 if ( ! is_user_logged_in() ) {
-    echo '<p>' . __( 'Please log in to connect your accounts.', 'dedebtify' ) . '</p>';
+    echo '<p>' . __( 'Please log in to connect your accounts.', 'budgetura' ) . '</p>';
     return;
 }
 
-$plaid_enabled = get_option( 'dedebtify_plaid_enabled', 0 );
-$plaid_client_id = get_option( 'dedebtify_plaid_client_id', '' );
+$plaid_enabled = get_option( 'budgetura_plaid_enabled', 0 );
+$plaid_client_id = get_option( 'budgetura_plaid_client_id', '' );
 ?>
 
 <!-- Navigation -->
-<?php Dedebtify_Helpers::render_navigation( 'account_sync' ); ?>
+<?php Budgetura_Helpers::render_navigation( 'account_sync' ); ?>
 
-<div class="dedebtify-dashboard dedebtify-account-sync">
+<div class="budgetura-dashboard budgetura-account-sync">
 
-    <div class="dedebtify-dashboard-header">
-        <h1><?php _e( 'Account Sync', 'dedebtify' ); ?></h1>
-        <p><?php _e( 'Automatically sync your financial accounts to keep your debt information up-to-date', 'dedebtify' ); ?></p>
+    <div class="budgetura-dashboard-header">
+        <h1><?php _e( 'Account Sync', 'budgetura' ); ?></h1>
+        <p><?php _e( 'Automatically sync your financial accounts to keep your debt information up-to-date', 'budgetura' ); ?></p>
     </div>
 
     <?php if ( ! $plaid_enabled || empty( $plaid_client_id ) ) : ?>
@@ -41,94 +41,94 @@ $plaid_client_id = get_option( 'dedebtify_plaid_client_id', '' );
                 <span class="dashicons dashicons-warning"></span>
             </div>
             <div class="dd-alert-content">
-                <h3 class="dd-alert-title"><?php esc_html_e( 'Account Sync Not Available', 'dedebtify' ); ?></h3>
-                <p class="dd-alert-description"><?php esc_html_e( 'The site administrator has not configured account syncing yet. Please contact support or check back later.', 'dedebtify' ); ?></p>
+                <h3 class="dd-alert-title"><?php esc_html_e( 'Account Sync Not Available', 'budgetura' ); ?></h3>
+                <p class="dd-alert-description"><?php esc_html_e( 'The site administrator has not configured account syncing yet. Please contact support or check back later.', 'budgetura' ); ?></p>
             </div>
         </div>
 
     <?php else : ?>
         <!-- Connected Accounts Section -->
-        <div class="dedebtify-section">
-            <div class="dedebtify-section-header">
-                <h2><?php _e( 'Connected Accounts', 'dedebtify' ); ?></h2>
-                <button id="dd-link-account-btn" class="dedebtify-btn dedebtify-btn-success">
+        <div class="budgetura-section">
+            <div class="budgetura-section-header">
+                <h2><?php _e( 'Connected Accounts', 'budgetura' ); ?></h2>
+                <button id="dd-link-account-btn" class="budgetura-btn budgetura-btn-success">
                     <span class="dashicons dashicons-plus"></span>
-                    <?php _e( 'Link New Account', 'dedebtify' ); ?>
+                    <?php _e( 'Link New Account', 'budgetura' ); ?>
                 </button>
             </div>
 
             <div id="dd-linked-accounts-list" class="dd-linked-accounts-list">
-                <div class="dedebtify-loading">
-                    <div class="dedebtify-spinner"></div>
-                    <p><?php _e( 'Loading connected accounts...', 'dedebtify' ); ?></p>
+                <div class="budgetura-loading">
+                    <div class="budgetura-spinner"></div>
+                    <p><?php _e( 'Loading connected accounts...', 'budgetura' ); ?></p>
                 </div>
             </div>
 
-            <div id="dd-no-accounts" class="dedebtify-empty-state" style="display: none;">
+            <div id="dd-no-accounts" class="budgetura-empty-state" style="display: none;">
                 <span class="dashicons dashicons-bank" style="font-size: 48px; color: #cbd5e0; margin-bottom: 16px;"></span>
-                <h3><?php _e( 'No Connected Accounts', 'dedebtify' ); ?></h3>
-                <p><?php _e( 'Link your bank, credit card, and loan accounts to automatically sync your balances and transactions.', 'dedebtify' ); ?></p>
-                <button id="dd-link-first-account-btn" class="dedebtify-btn dedebtify-btn-success">
+                <h3><?php _e( 'No Connected Accounts', 'budgetura' ); ?></h3>
+                <p><?php _e( 'Link your bank, credit card, and loan accounts to automatically sync your balances and transactions.', 'budgetura' ); ?></p>
+                <button id="dd-link-first-account-btn" class="budgetura-btn budgetura-btn-success">
                     <span class="dashicons dashicons-plus"></span>
-                    <?php _e( 'Link Your First Account', 'dedebtify' ); ?>
+                    <?php _e( 'Link Your First Account', 'budgetura' ); ?>
                 </button>
             </div>
         </div>
 
         <!-- Sync Info Section -->
-        <div class="dedebtify-section">
-            <h2><?php _e( 'How Account Sync Works', 'dedebtify' ); ?></h2>
+        <div class="budgetura-section">
+            <h2><?php _e( 'How Account Sync Works', 'budgetura' ); ?></h2>
 
             <div class="dd-info-cards">
                 <div class="dd-info-card">
                     <div class="dd-info-icon">
                         <span class="dashicons dashicons-shield"></span>
                     </div>
-                    <h3><?php _e( 'Secure Connection', 'dedebtify' ); ?></h3>
-                    <p><?php _e( 'We use Plaid, a trusted financial data network, to securely connect your accounts. Your login credentials are never shared with DeDebtify.', 'dedebtify' ); ?></p>
+                    <h3><?php _e( 'Secure Connection', 'budgetura' ); ?></h3>
+                    <p><?php _e( 'We use Plaid, a trusted financial data network, to securely connect your accounts. Your login credentials are never shared with Budgetura.', 'budgetura' ); ?></p>
                 </div>
 
                 <div class="dd-info-card">
                     <div class="dd-info-icon">
                         <span class="dashicons dashicons-update"></span>
                     </div>
-                    <h3><?php _e( 'Automatic Updates', 'dedebtify' ); ?></h3>
-                    <p><?php _e( 'Your account balances and transactions are automatically updated daily. You can also manually sync anytime to get the latest data.', 'dedebtify' ); ?></p>
+                    <h3><?php _e( 'Automatic Updates', 'budgetura' ); ?></h3>
+                    <p><?php _e( 'Your account balances and transactions are automatically updated daily. You can also manually sync anytime to get the latest data.', 'budgetura' ); ?></p>
                 </div>
 
                 <div class="dd-info-card">
                     <div class="dd-info-icon">
                         <span class="dashicons dashicons-admin-tools"></span>
                     </div>
-                    <h3><?php _e( 'Full Control', 'dedebtify' ); ?></h3>
-                    <p><?php _e( 'You can disconnect any linked account at any time. Disconnecting removes the connection but keeps your historical data.', 'dedebtify' ); ?></p>
+                    <h3><?php _e( 'Full Control', 'budgetura' ); ?></h3>
+                    <p><?php _e( 'You can disconnect any linked account at any time. Disconnecting removes the connection but keeps your historical data.', 'budgetura' ); ?></p>
                 </div>
             </div>
         </div>
 
         <!-- Supported Account Types -->
-        <div class="dedebtify-section">
-            <h2><?php _e( 'Supported Account Types', 'dedebtify' ); ?></h2>
+        <div class="budgetura-section">
+            <h2><?php _e( 'Supported Account Types', 'budgetura' ); ?></h2>
             <div class="dd-supported-types">
                 <div class="dd-type-badge">
                     <span class="dashicons dashicons-money-alt"></span>
-                    <?php _e( 'Credit Cards', 'dedebtify' ); ?>
+                    <?php _e( 'Credit Cards', 'budgetura' ); ?>
                 </div>
                 <div class="dd-type-badge">
                     <span class="dashicons dashicons-money-alt"></span>
-                    <?php _e( 'Personal Loans', 'dedebtify' ); ?>
+                    <?php _e( 'Personal Loans', 'budgetura' ); ?>
                 </div>
                 <div class="dd-type-badge">
                     <span class="dashicons dashicons-money-alt"></span>
-                    <?php _e( 'Auto Loans', 'dedebtify' ); ?>
+                    <?php _e( 'Auto Loans', 'budgetura' ); ?>
                 </div>
                 <div class="dd-type-badge">
                     <span class="dashicons dashicons-welcome-learn-more"></span>
-                    <?php _e( 'Student Loans', 'dedebtify' ); ?>
+                    <?php _e( 'Student Loans', 'budgetura' ); ?>
                 </div>
                 <div class="dd-type-badge">
                     <span class="dashicons dashicons-admin-home"></span>
-                    <?php _e( 'Mortgages', 'dedebtify' ); ?>
+                    <?php _e( 'Mortgages', 'budgetura' ); ?>
                 </div>
             </div>
         </div>
@@ -305,14 +305,14 @@ $plaid_client_id = get_option( 'dedebtify_plaid_client_id', '' );
     color: hsl(var(--dd-primary));
 }
 
-.dedebtify-section-header {
+.budgetura-section-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.dedebtify-section-header h2 {
+.budgetura-section-header h2 {
     margin: 0;
 }
 </style>

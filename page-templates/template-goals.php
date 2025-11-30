@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: DeDebtify Goals
+ * Template Name: Budgetura Goals
  * Description: Financial goals template
  */
 
@@ -9,7 +9,7 @@ get_header();
 
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
-        <?php echo do_shortcode('[dedebtify_goals]'); ?>
+        <?php echo do_shortcode('[budgetura_goals]'); ?>
     </main>
 </div>
 

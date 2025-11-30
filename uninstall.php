@@ -14,7 +14,7 @@
  *
  * @link       https://yoursite.com
  * @since      1.0.0
- * @package    Dedebtify
+ * @package    Budgetura
  */
 
 // If uninstall not called from WordPress, then exit.
@@ -25,7 +25,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 /**
  * Delete all plugin data
  */
-function dedebtify_uninstall() {
+function budgetura_uninstall() {
     global $wpdb;
 
     // Delete all custom post types
@@ -90,9 +90,9 @@ function dedebtify_uninstall() {
     );
 
     // Delete plugin options
-    delete_option( 'dedebtify_settings' );
-    delete_option( 'dedebtify_version' );
-    delete_option( 'dedebtify_activated_time' );
+    delete_option( 'budgetura_settings' );
+    delete_option( 'budgetura_version' );
+    delete_option( 'budgetura_activated_time' );
 
     // For multisite
     if ( is_multisite() ) {
@@ -115,9 +115,9 @@ function dedebtify_uninstall() {
             }
 
             // Delete options for this site
-            delete_option( 'dedebtify_settings' );
-            delete_option( 'dedebtify_version' );
-            delete_option( 'dedebtify_activated_time' );
+            delete_option( 'budgetura_settings' );
+            delete_option( 'budgetura_version' );
+            delete_option( 'budgetura_activated_time' );
 
             restore_current_blog();
         }
@@ -128,4 +128,4 @@ function dedebtify_uninstall() {
 }
 
 // Run uninstall
-dedebtify_uninstall();
+budgetura_uninstall();
